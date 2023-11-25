@@ -34,7 +34,7 @@ class EnterMBTIVC: UIViewController {
         setupBackButton()
     }
     
-    // MARK: - Views
+    // MARK: - Set Up Views
     
     private func setupEnter() {
         enter.text = "enter your"
@@ -50,45 +50,6 @@ class EnterMBTIVC: UIViewController {
             enter.topAnchor.constraint(equalTo: view.topAnchor, constant: 94)
         ])
     }
-    
-//    private func setupMBTI() {
-//        mbti.text = "MBTI"
-//        mbti.font = UIFont(name: "Fredoka-Medium", size: 85.59)
-//
-//        let attributedString = NSMutableAttributedString(string: mbti.text!)
-//
-//        for (index, _) in mbti.text!.enumerated() {
-//            let range = NSRange(location: index, length: 1)
-//            var color: UIColor
-//            if index == 0 {
-//                color = UIColor.hack.green
-//            }
-//            else if index == 1 {
-//                color = UIColor.hack.purple
-//            }
-//            else if index == 2 {
-//                color = UIColor.hack.blue
-//            }
-//            else if index == 3 {
-//                color = UIColor.hack.yellow
-//            }
-//            else {
-//                color = UIColor.hack.tan
-//            }
-//            attributedString.addAttribute(.foregroundColor, value: color, range: range)
-//        }
-//
-//        mbti.attributedText = attributedString
-//        mbti.sizeToFit()
-//
-//        view.addSubview(mbti)
-//        mbti.translatesAutoresizingMaskIntoConstraints = false
-//
-//        NSLayoutConstraint.activate([
-//            mbti.topAnchor.constraint(equalTo: view.topAnchor, constant: 122.48),
-//            mbti.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//        ])
-//    }
     
     private func setupMBTI() {
         mbti.image = UIImage(named: "mbti")

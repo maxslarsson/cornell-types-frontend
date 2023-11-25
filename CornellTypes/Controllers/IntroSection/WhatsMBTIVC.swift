@@ -29,62 +29,9 @@ class WhatsMBTIVC: UIViewController {
         setupQuizButton()
         setupBackButton()
     }
-    
-//    private func setupWhats() {
-//        whats.text = "What's"
-//        whats.font = UIFont(name: "Fredoka-Medium", size: 68.51)
-//        whats.textColor = UIColor.hack.tan
-//        //welcome.setOutline(color: UIColor.hack.red, thickness: 0.7)
-//        whats.numberOfLines = 0
-//
-//        view.addSubview(whats)
-//        whats.translatesAutoresizingMaskIntoConstraints = false
-//
-//        NSLayoutConstraint.activate([
-//            whats.topAnchor.constraint(equalTo: view.topAnchor, constant: 49),
-//            whats.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//        ])
-//    }
-//
-//    private func setupMBTI() {
-//        mbti.text = "MBTI?"
-//        mbti.font = UIFont(name: "Fredoka-Medium", size: 66.12)
-//
-//        let attributedString = NSMutableAttributedString(string: mbti.text!)
-//
-//        for (index, _) in mbti.text!.enumerated() {
-//            let range = NSRange(location: index, length: 1)
-//            var color: UIColor
-//            if index == 0 {
-//                color = UIColor.hack.green
-//            }
-//            else if index == 1 {
-//                color = UIColor.hack.purple
-//            }
-//            else if index == 2 {
-//                color = UIColor.hack.blue
-//            }
-//            else if index == 3 {
-//                color = UIColor.hack.yellow
-//            }
-//            else {
-//                color = UIColor.hack.tan
-//            }
-//            attributedString.addAttribute(.foregroundColor, value: color, range: range)
-//        }
-//
-//        mbti.attributedText = attributedString
-//        mbti.sizeToFit()
-//
-//        view.addSubview(mbti)
-//        mbti.translatesAutoresizingMaskIntoConstraints = false
-//
-//        NSLayoutConstraint.activate([
-//            mbti.topAnchor.constraint(equalTo: view.topAnchor, constant: 132),
-//            mbti.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//        ])
-//    }
 
+    // MARK: - Set Up Views
+    
     private func setupWhatsMBTI() {
         whatsMBTI.image = UIImage(named: "whatsmbti")
         
@@ -121,8 +68,6 @@ class WhatsMBTIVC: UIViewController {
         quizButton.titleLabel!.font = UIFont(name: "Fredoka-Medium", size: 22)
         quizButton.setTitleColor(UIColor.hack.white, for: .normal)
         quizButton.setBackgroundImage(UIImage(named: "purplerect"), for: .normal)
-        //login.layer.borderColor = UIColor.hack.red.cgColor
-        //login.layer.borderWidth = 2
         quizButton.layer.cornerRadius = 16
         quizButton.addTarget(self, action: #selector(pushQuiz), for: .touchUpInside)
         

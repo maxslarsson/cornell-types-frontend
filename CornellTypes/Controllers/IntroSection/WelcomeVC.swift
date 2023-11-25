@@ -35,62 +35,8 @@ class WelcomeVC: UIViewController {
         setupWhatsMBTIButton()
     }
     
-    // MARK: - Views
-//    private func setupWelcome() {
-//        welcome.text = "Welcome"
-//        welcome.font = UIFont(name: "Fredoka-Medium", size: 68.51)
-//        welcome.textColor = UIColor.hack.tan
-//        //welcome.setOutline(color: UIColor.hack.red, thickness: 0.7)
-//        welcome.numberOfLines = 0
-//
-//        view.addSubview(welcome)
-//        welcome.translatesAutoresizingMaskIntoConstraints = false
-//
-//        NSLayoutConstraint.activate([
-//            welcome.topAnchor.constraint(equalTo: view.topAnchor, constant: 117),
-//            welcome.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//        ])
-//    }
-//
-//    private func setupUser() {
-//        user.text = "User"
-//        user.font = UIFont(name: "Fredoka-Medium", size: 66.12)
-//
-//        let attributedString = NSMutableAttributedString(string: user.text!)
-//
-//        for (index, _) in user.text!.enumerated() {
-//            let range = NSRange(location: index, length: 1)
-//            var color: UIColor
-//            if index == 0 {
-//                color = UIColor.hack.green
-//            }
-//            else if index == 1 {
-//                color = UIColor.hack.purple
-//            }
-//            else if index == 2 {
-//                color = UIColor.hack.blue
-//            }
-//            else if index == 3 {
-//                color = UIColor.hack.yellow
-//            }
-//            else {
-//                color = UIColor.hack.tan
-//            }
-//            attributedString.addAttribute(.foregroundColor, value: color, range: range)
-//        }
-//
-//        user.attributedText = attributedString
-//        user.sizeToFit()
-//
-//        view.addSubview(user)
-//        user.translatesAutoresizingMaskIntoConstraints = false
-//
-//        NSLayoutConstraint.activate([
-//            user.topAnchor.constraint(equalTo: view.topAnchor, constant: 183.12),
-//            user.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//        ])
-//    }
-    
+    // MARK: - Set Up Views
+
     private func setupWelcomeUser() {
         welcomeUser.image = UIImage(named: "welcomeuser")
         
@@ -125,8 +71,6 @@ class WelcomeVC: UIViewController {
         quizButton.titleLabel!.font = UIFont(name: "Fredoka-Medium", size: 22)
         quizButton.setTitleColor(UIColor.hack.white, for: .normal)
         quizButton.setBackgroundImage(UIImage(named: "purplerect"), for: .normal)
-        //login.layer.borderColor = UIColor.hack.red.cgColor
-        //login.layer.borderWidth = 2
         quizButton.layer.cornerRadius = 16
         quizButton.addTarget(self, action: #selector(pushQuiz), for: .touchUpInside)
         
@@ -160,8 +104,6 @@ class WelcomeVC: UIViewController {
         enterMBTIButton.titleLabel!.font = UIFont(name: "Fredoka-Medium", size: 22)
         enterMBTIButton.setTitleColor(UIColor.hack.white, for: .normal)
         enterMBTIButton.setBackgroundImage(UIImage(named: "bluerect"), for: .normal)
-        //login.layer.borderColor = UIColor.hack.red.cgColor
-        //login.layer.borderWidth = 2
         enterMBTIButton.layer.cornerRadius = 16
         enterMBTIButton.addTarget(self, action: #selector(pushEnterMBTI), for: .touchUpInside)
         
@@ -181,8 +123,6 @@ class WelcomeVC: UIViewController {
         whatsMBTIButton.titleLabel!.font = UIFont(name: "Fredoka-Regular", size: 22)
         whatsMBTIButton.setTitleColor(UIColor.hack.darkpink, for: .normal)
         whatsMBTIButton.backgroundColor = UIColor.hack.white
-        //login.layer.borderColor = UIColor.hack.red.cgColor
-        //login.layer.borderWidth = 2
         whatsMBTIButton.layer.cornerRadius = 16
         whatsMBTIButton.addTarget(self, action: #selector(pushWhatsMBTI), for: .touchUpInside)
         

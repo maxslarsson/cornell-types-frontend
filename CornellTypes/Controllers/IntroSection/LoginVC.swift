@@ -11,9 +11,6 @@ class LoginVC: UIViewController {
     
     // MARK: - Properties (view)
     
-    //private let cornell = UILabel()
-    //private let types = UILabel()
-    //private let bear = UIImageView()
     private let logo = UIImageView()
     private let subtitle = UILabel()
     private let username = UITextField()
@@ -24,6 +21,7 @@ class LoginVC: UIViewController {
     // MARK: - Properties (data)
     
     // MARK: - viewDidLoad
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.hack.white
@@ -36,74 +34,8 @@ class LoginVC: UIViewController {
         setupBackButton()
     }
     
-//    private func setupCornell() {
-//        cornell.text = "Cornell"
-//        cornell.font = UIFont(name: "Fredoka-Medium", size: 68.51)
-//        cornell.textColor = UIColor.hack.tan
-//        cornell.numberOfLines = 0
-//
-//        view.addSubview(cornell)
-//        cornell.translatesAutoresizingMaskIntoConstraints = false
-//
-//        NSLayoutConstraint.activate([
-//            cornell.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 49),
-//            cornell.topAnchor.constraint(equalTo: view.topAnchor, constant: 122.79),
-//            cornell.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -101)
-//        ])
-//    }
-//
-//    private func setupBear() {
-//        bear.image = UIImage(named: "logo")
-//
-//        view.addSubview(bear)
-//        bear.translatesAutoresizingMaskIntoConstraints = false
-//
-//        NSLayoutConstraint.activate([
-//            bear.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 204.12),
-//            bear.topAnchor.constraint(equalTo: view.topAnchor, constant: 91),
-//        ])
-//    }
-//
-//    private func setupTypes() {
-//        types.text = "Types"
-//        types.font = UIFont(name: "Fredoka-Medium", size: 66.12)
-//
-//        let attributedString = NSMutableAttributedString(string: types.text!)
-//
-//        for (index, _) in types.text!.enumerated() {
-//            let range = NSRange(location: index, length: 1)
-//            var color: UIColor
-//            if index == 0 {
-//                color = UIColor.hack.green
-//            }
-//            else if index == 1 {
-//                color = UIColor.hack.purple
-//            }
-//            else if index == 2 {
-//                color = UIColor.hack.blue
-//            }
-//            else if index == 3 {
-//                color = UIColor.hack.yellow
-//            }
-//            else {
-//                color = UIColor.hack.tan
-//            }
-//            attributedString.addAttribute(.foregroundColor, value: color, range: range)
-//        }
-//
-//        types.attributedText = attributedString
-//        types.sizeToFit()
-//
-//        view.addSubview(types)
-//        types.translatesAutoresizingMaskIntoConstraints = false
-//
-//        NSLayoutConstraint.activate([
-//            types.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 118.93),
-//            types.topAnchor.constraint(equalTo: view.topAnchor, constant: 188.9),
-//            types.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -84.07)
-//        ])
-//    }
-
+    // MARK: - Set Up Views
+    
     private func setupLogo() {
         logo.image = UIImage(named: "cornellTypesLogo")
         
@@ -196,8 +128,6 @@ class LoginVC: UIViewController {
         loginButton.titleLabel!.font = UIFont(name: "Fredoka-Medium", size: 22)
         loginButton.setTitleColor(UIColor.hack.white, for: .normal)
         loginButton.setBackgroundImage(UIImage(named: "tanrect"), for: .normal)
-        //loginButton.layer.borderColor = UIColor.hack.red.cgColor
-        //loginButton.layer.borderWidth = 2
         loginButton.layer.cornerRadius = 16
         loginButton.addTarget(self, action: #selector(pushHome), for: .touchUpInside)
         

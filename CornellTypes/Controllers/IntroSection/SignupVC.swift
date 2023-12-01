@@ -11,9 +11,6 @@ class SignupVC: UIViewController {
     
     // MARK: - Properties (view)
     
-    //private let cornell = UILabel()
-    //private let types = UILabel()
-    //private let bear = UIImageView()
     private let logo = UIImageView()
     private let subtitle = UILabel()
     private let name = UITextField()
@@ -48,14 +45,14 @@ class SignupVC: UIViewController {
         logo.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             logo.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 28),
-            logo.topAnchor.constraint(equalTo: view.topAnchor, constant: 81),
+            logo.topAnchor.constraint(equalTo: view.topAnchor, constant: 91),
             logo.widthAnchor.constraint(equalToConstant: 346),
             logo.heightAnchor.constraint(equalToConstant: 187.9)
         ])
     }
     
     private func setupSubtitle() {
-        subtitle.text = "lorem ipsum dolor."
+        subtitle.text = "meet all types of students!"
         subtitle.textColor = UIColor.hack.red
         subtitle.font = UIFont(name: "Fredoka-Regular", size: 22)
         subtitle.numberOfLines = 0
@@ -65,7 +62,7 @@ class SignupVC: UIViewController {
         
         NSLayoutConstraint.activate([
             subtitle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            subtitle.topAnchor.constraint(equalTo: view.topAnchor, constant: 276)
+            subtitle.topAnchor.constraint(equalTo: view.topAnchor, constant: 286)
         ])
     }
     
@@ -91,7 +88,7 @@ class SignupVC: UIViewController {
         name.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            name.topAnchor.constraint(equalTo: view.topAnchor, constant: 350),
+            name.topAnchor.constraint(equalTo: view.topAnchor, constant: 360),
             name.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 66),
             name.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -66),
             name.heightAnchor.constraint(equalToConstant: 50)
@@ -120,7 +117,7 @@ class SignupVC: UIViewController {
         username.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            username.topAnchor.constraint(equalTo: view.topAnchor, constant: 424),
+            username.topAnchor.constraint(equalTo: view.topAnchor, constant: 434),
             username.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 66),
             username.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -66),
             username.heightAnchor.constraint(equalToConstant: 50)
@@ -149,7 +146,7 @@ class SignupVC: UIViewController {
         password.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            password.topAnchor.constraint(equalTo: view.topAnchor, constant: 498),
+            password.topAnchor.constraint(equalTo: view.topAnchor, constant: 508),
             password.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 66),
             password.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -66),
             password.heightAnchor.constraint(equalToConstant: 50)
@@ -168,7 +165,7 @@ class SignupVC: UIViewController {
         signupButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            signupButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 595),
+            signupButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 605),
             signupButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 107),
             signupButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -109),
             signupButton.widthAnchor.constraint(equalToConstant: 149),
@@ -177,7 +174,7 @@ class SignupVC: UIViewController {
     }
     
     private func setupBackButton() {
-        backButton.setImage(UIImage(named: "Back"), for: .normal)
+        backButton.setImage(UIImage(named: "back"), for: .normal)
         backButton.addTarget(self, action: #selector(popVC), for: .touchUpInside)
         
         backButton.translatesAutoresizingMaskIntoConstraints = false

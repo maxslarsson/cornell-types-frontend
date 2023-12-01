@@ -42,13 +42,13 @@ class ViewController: UIViewController {
         logo.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             logo.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 28),
-            logo.topAnchor.constraint(equalTo: view.topAnchor, constant: 151),
+            logo.topAnchor.constraint(equalTo: view.topAnchor, constant: 161),
             logo.widthAnchor.constraint(equalToConstant: 346),
             logo.heightAnchor.constraint(equalToConstant: 187.9)
         ])
     }
     private func setupSubtitle() {
-        subtitle.text = "lorem ipsum dolor."
+        subtitle.text = "meet all types of students!"
         subtitle.textColor = UIColor.hack.red
         subtitle.font = UIFont(name: "Fredoka-Regular", size: 22)
         subtitle.numberOfLines = 0
@@ -58,7 +58,7 @@ class ViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             subtitle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            subtitle.topAnchor.constraint(equalTo: view.topAnchor, constant: 346)
+            subtitle.topAnchor.constraint(equalTo: view.topAnchor, constant: 356)
         ])
     }
     
@@ -74,7 +74,7 @@ class ViewController: UIViewController {
         login.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            login.topAnchor.constraint(equalTo: view.topAnchor, constant: 426),
+            login.topAnchor.constraint(equalTo: view.topAnchor, constant: 436),
             login.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 64),
             login.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -68),
             login.widthAnchor.constraint(equalToConstant: 243),
@@ -94,7 +94,7 @@ class ViewController: UIViewController {
         signup.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            signup.topAnchor.constraint(equalTo: view.topAnchor, constant: 503),
+            signup.topAnchor.constraint(equalTo: view.topAnchor, constant: 513),
             signup.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 64),
             signup.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -68),
             signup.widthAnchor.constraint(equalToConstant: 243),

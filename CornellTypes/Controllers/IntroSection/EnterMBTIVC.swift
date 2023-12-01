@@ -17,6 +17,7 @@ class EnterMBTIVC: UIViewController {
     private let mbtiText = UITextField()
     private let submit = UIButton()
     private let backButton = UIButton()
+    private let bear = UIImageView()
     
     // MARK: - Properties (data)
     
@@ -32,6 +33,7 @@ class EnterMBTIVC: UIViewController {
         setupType()
         setupSubmit()
         setupBackButton()
+        setupBear()
     }
     
     // MARK: - Set Up Views
@@ -130,7 +132,7 @@ class EnterMBTIVC: UIViewController {
     }
     
     private func setupBackButton() {
-        backButton.setImage(UIImage(named: "Back"), for: .normal)
+        backButton.setImage(UIImage(named: "back"), for: .normal)
         backButton.addTarget(self, action: #selector(popVC), for: .touchUpInside)
         
         backButton.translatesAutoresizingMaskIntoConstraints = false
@@ -140,6 +142,21 @@ class EnterMBTIVC: UIViewController {
         let customBackButton = UIBarButtonItem(customView: backButton)
         navigationItem.leftBarButtonItem = customBackButton
     }
+    
+    private func setupBear() {
+        bear.image = UIImage(named: "bearthinking")
+        
+        view.addSubview(bear)
+        bear.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            bear.topAnchor.constraint(equalTo: view.topAnchor, constant: 416),
+            bear.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 45),
+            bear.widthAnchor.constraint(equalToConstant: 313),
+            bear.heightAnchor.constraint(equalToConstant: 445)
+        ])
+    }
+    
     
     @objc private func pushResult() {
         let vc = ResultVC()

@@ -21,7 +21,6 @@ class HomeVC: UIViewController {
     // MARK: - Properties (data)
     
     private let posts: [Post] = []
-    private let profileImage: String = ""
     
     // MARK: - viewDidLoad
     
@@ -48,14 +47,13 @@ class HomeVC: UIViewController {
         NSLayoutConstraint.activate([
             logo.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             logo.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
-            logo.widthAnchor.constraint(equalToConstant: 170),
-            logo.heightAnchor.constraint(equalToConstant: 100)
+            logo.widthAnchor.constraint(equalToConstant: 165),
+            logo.heightAnchor.constraint(equalToConstant: 98)
         ])
     }
     
     private func setupPFP() {
-        pfp.setBackgroundImage(UIImage(named: "\(profileImage)"), for: .normal)
-        pfp.layer.cornerRadius = 33.025
+        pfp.setBackgroundImage(UIImage(named: "bearprofile"), for: .normal)
         pfp.layer.masksToBounds = true
         pfp.addTarget(self, action: #selector(pushUserProfile), for: .touchUpInside)
         
@@ -63,10 +61,10 @@ class HomeVC: UIViewController {
         pfp.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            pfp.centerYAnchor.constraint(equalTo: logo.centerYAnchor, constant: 15),
-            pfp.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 293),
-            pfp.widthAnchor.constraint(equalToConstant: 66.05),
-            pfp.heightAnchor.constraint(equalToConstant: 66.05)
+            pfp.centerYAnchor.constraint(equalTo: logo.centerYAnchor, constant: 10),
+            pfp.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 280),
+            pfp.widthAnchor.constraint(equalToConstant: 108),
+            pfp.heightAnchor.constraint(equalToConstant: 84)
         ])
     }
     

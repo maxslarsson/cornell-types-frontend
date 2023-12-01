@@ -43,14 +43,14 @@ class LoginVC: UIViewController {
         logo.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             logo.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 28),
-            logo.topAnchor.constraint(equalTo: view.topAnchor, constant: 81),
+            logo.topAnchor.constraint(equalTo: view.topAnchor, constant: 91),
             logo.widthAnchor.constraint(equalToConstant: 346),
             logo.heightAnchor.constraint(equalToConstant: 187.9)
         ])
     }
     
     private func setupSubtitle() {
-        subtitle.text = "lorem ipsum dolor."
+        subtitle.text = "meet all types of students!"
         subtitle.textColor = UIColor.hack.red
         subtitle.font = UIFont(name: "Fredoka-Regular", size: 22)
         subtitle.numberOfLines = 0
@@ -60,7 +60,7 @@ class LoginVC: UIViewController {
         
         NSLayoutConstraint.activate([
             subtitle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            subtitle.topAnchor.constraint(equalTo: view.topAnchor, constant: 276)
+            subtitle.topAnchor.constraint(equalTo: view.topAnchor, constant: 286)
         ])
     }
     
@@ -87,7 +87,7 @@ class LoginVC: UIViewController {
         username.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            username.topAnchor.constraint(equalTo: view.topAnchor, constant: 373),
+            username.topAnchor.constraint(equalTo: view.topAnchor, constant: 383),
             username.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 66),
             username.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -66),
             username.heightAnchor.constraint(equalToConstant: 50)
@@ -116,7 +116,7 @@ class LoginVC: UIViewController {
         password.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            password.topAnchor.constraint(equalTo: view.topAnchor, constant: 447),
+            password.topAnchor.constraint(equalTo: view.topAnchor, constant: 457),
             password.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 66),
             password.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -66),
             password.heightAnchor.constraint(equalToConstant: 50)
@@ -135,7 +135,7 @@ class LoginVC: UIViewController {
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            loginButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 544),
+            loginButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 554),
             loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 107),
             loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -109),
             loginButton.widthAnchor.constraint(equalToConstant: 149),
@@ -144,7 +144,7 @@ class LoginVC: UIViewController {
     }
     
     private func setupBackButton() {
-        backButton.setImage(UIImage(named: "Back"), for: .normal)
+        backButton.setImage(UIImage(named: "back"), for: .normal)
         backButton.addTarget(self, action: #selector(popVC), for: .touchUpInside)
         
         backButton.translatesAutoresizingMaskIntoConstraints = false

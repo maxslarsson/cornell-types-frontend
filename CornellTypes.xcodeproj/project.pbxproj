@@ -15,7 +15,7 @@
 		4CA4B3B12B19750500584ADC /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4B3B02B19750500584ADC /* NetworkManager.swift */; };
 		4CA4B3B52B19751400584ADC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4B3B32B19751400584ADC /* User.swift */; };
 		4CA4B3B62B19751400584ADC /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4B3B42B19751400584ADC /* Post.swift */; };
-		4CA4B3B92B19751800584ADC /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4B3B82B19751800584ADC /* UIColorExtensions.swift */; };
+		4CA4B3B92B19751800584ADC /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4B3B82B19751800584ADC /* UIColorExtension.swift */; };
 		4CA4B3E32B19759B00584ADC /* Fredoka-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4CA4B3CA2B19759B00584ADC /* Fredoka-Medium.ttf */; };
 		4CA4B3E42B19759B00584ADC /* Fredoka-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4CA4B3CB2B19759B00584ADC /* Fredoka-Light.ttf */; };
 		4CA4B3E62B19759B00584ADC /* Fredoka-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4CA4B3CD2B19759B00584ADC /* Fredoka-Bold.ttf */; };
@@ -43,7 +43,7 @@
 		4CA4B3B02B19750500584ADC /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		4CA4B3B32B19751400584ADC /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4CA4B3B42B19751400584ADC /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		4CA4B3B82B19751800584ADC /* UIColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
+		4CA4B3B82B19751800584ADC /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		4CA4B3CA2B19759B00584ADC /* Fredoka-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Fredoka-Medium.ttf"; sourceTree = "<group>"; };
 		4CA4B3CB2B19759B00584ADC /* Fredoka-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Fredoka-Light.ttf"; sourceTree = "<group>"; };
 		4CA4B3CD2B19759B00584ADC /* Fredoka-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Fredoka-Bold.ttf"; sourceTree = "<group>"; };
@@ -126,7 +126,7 @@
 		4CA4B3B72B19751800584ADC /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				4CA4B3B82B19751800584ADC /* UIColorExtensions.swift */,
+				4CA4B3B82B19751800584ADC /* UIColorExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -269,7 +269,7 @@
 				4CA4B3B12B19750500584ADC /* NetworkManager.swift in Sources */,
 				4CA4B4102B19765D00584ADC /* QuizVC.swift in Sources */,
 				4CA4B40C2B19765D00584ADC /* WelcomeVC.swift in Sources */,
-				4CA4B3B92B19751800584ADC /* UIColorExtensions.swift in Sources */,
+				4CA4B3B92B19751800584ADC /* UIColorExtension.swift in Sources */,
 				4CA4B40A2B19765D00584ADC /* LoginVC.swift in Sources */,
 				4CA4B40B2B19765D00584ADC /* SignupVC.swift in Sources */,
 				4C3AA8052B197210006C8AD4 /* AppDelegate.swift in Sources */,

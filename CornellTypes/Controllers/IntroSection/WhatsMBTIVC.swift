@@ -39,7 +39,7 @@ class WhatsMBTIVC: UIViewController {
         whatsMBTI.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            whatsMBTI.topAnchor.constraint(equalTo: view.topAnchor, constant: 90),
+            whatsMBTI.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
             whatsMBTI.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 83),
             whatsMBTI.widthAnchor.constraint(equalToConstant: 212),
             whatsMBTI.heightAnchor.constraint(equalToConstant: 133)
@@ -58,7 +58,7 @@ class WhatsMBTIVC: UIViewController {
         
         NSLayoutConstraint.activate([
             desc.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            desc.topAnchor.constraint(equalTo: view.topAnchor, constant: 244),
+            desc.topAnchor.constraint(equalTo: view.topAnchor, constant: 254),
             desc.widthAnchor.constraint(equalToConstant: 279)
         ])
     }
@@ -75,7 +75,7 @@ class WhatsMBTIVC: UIViewController {
         quizButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            quizButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 680),
+            quizButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 690),
             quizButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             quizButton.widthAnchor.constraint(equalToConstant: 243),
             quizButton.heightAnchor.constraint(equalToConstant: 50)
@@ -83,7 +83,7 @@ class WhatsMBTIVC: UIViewController {
     }
     
     private func setupBackButton() {
-        backButton.setImage(UIImage(named: "Back"), for: .normal)
+        backButton.setImage(UIImage(named: "back"), for: .normal)
         backButton.addTarget(self, action: #selector(popVC), for: .touchUpInside)
         
         backButton.translatesAutoresizingMaskIntoConstraints = false

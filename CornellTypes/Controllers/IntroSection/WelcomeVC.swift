@@ -11,12 +11,14 @@ class WelcomeVC: UIViewController {
     
     // MARK: - Properties (view)
     
+    private let bear = UIImageView()
     private let welcomeUser = UIImageView()
     private let subtitle = UILabel()
     private let quizButton = UIButton()
     private let or = UILabel()
     private let enterMBTIButton = UIButton()
     private let whatsMBTIButton = UIButton()
+    
     
     // MARK: - Properties (data)
     
@@ -28,6 +30,7 @@ class WelcomeVC: UIViewController {
         self.navigationItem.hidesBackButton = true
         
         setupWelcomeUser()
+        setupBear()
         setupSubtitle()
         setupQuizButton()
         setupOr()
@@ -37,6 +40,19 @@ class WelcomeVC: UIViewController {
     
     // MARK: - Set Up Views
 
+    private func setupBear() {
+        bear.image = UIImage(named: "logo2")
+        
+        view.addSubview(bear)
+        bear.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            bear.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
+            bear.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 107)
+        ])
+        
+    }
+    
     private func setupWelcomeUser() {
         welcomeUser.image = UIImage(named: "welcomeuser")
         
@@ -44,7 +60,7 @@ class WelcomeVC: UIViewController {
         welcomeUser.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            welcomeUser.topAnchor.constraint(equalTo: view.topAnchor, constant: 125),
+            welcomeUser.topAnchor.constraint(equalTo: view.topAnchor, constant: 155),
             welcomeUser.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 45),
             welcomeUser.widthAnchor.constraint(equalToConstant: 303),
             welcomeUser.heightAnchor.constraint(equalToConstant: 130)
@@ -52,7 +68,7 @@ class WelcomeVC: UIViewController {
     }
     
     private func setupSubtitle() {
-        subtitle.text = "    nice to meet you\nlet's find your typing!"
+        subtitle.text = "    nice to meet you\n\nlet's find your typing!"
         subtitle.textColor = UIColor.hack.red
         subtitle.font = UIFont(name: "Fredoka-Regular", size: 22)
         subtitle.numberOfLines = 0
@@ -62,7 +78,7 @@ class WelcomeVC: UIViewController {
         
         NSLayoutConstraint.activate([
             subtitle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            subtitle.topAnchor.constraint(equalTo: view.topAnchor, constant: 292)
+            subtitle.topAnchor.constraint(equalTo: view.topAnchor, constant: 322)
         ])
     }
     
@@ -78,7 +94,7 @@ class WelcomeVC: UIViewController {
         quizButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            quizButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 418),
+            quizButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 448),
             quizButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             quizButton.widthAnchor.constraint(equalToConstant: 243),
             quizButton.heightAnchor.constraint(equalToConstant: 50)
@@ -94,7 +110,7 @@ class WelcomeVC: UIViewController {
         or.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            or.topAnchor.constraint(equalTo: view.topAnchor, constant: 503),
+            or.topAnchor.constraint(equalTo: view.topAnchor, constant: 533),
             or.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
@@ -111,7 +127,7 @@ class WelcomeVC: UIViewController {
         enterMBTIButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            enterMBTIButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 565),
+            enterMBTIButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 595),
             enterMBTIButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             enterMBTIButton.widthAnchor.constraint(equalToConstant: 243),
             enterMBTIButton.heightAnchor.constraint(equalToConstant: 50)
@@ -130,7 +146,7 @@ class WelcomeVC: UIViewController {
         whatsMBTIButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            whatsMBTIButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 712),
+            whatsMBTIButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 722),
             whatsMBTIButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             whatsMBTIButton.widthAnchor.constraint(equalToConstant: 153),
             whatsMBTIButton.heightAnchor.constraint(equalToConstant: 50)

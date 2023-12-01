@@ -1,5 +1,5 @@
 //
-//  UIColorExtensions.swift
+//  UIColorExtension.swift
 //  CornellTypes
 //
 //  Created by Alvaro Deras on 11/19/23.

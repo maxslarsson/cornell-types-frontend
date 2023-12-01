@@ -6,13 +6,23 @@
 //
 
 import Alamofire
+import Foundation
 
 class NetworkManager {
     
     // Shared singleton instance
     static let shared = NetworkManager()
     
-    private init() {}
+    // Endpoint
+    private let baseUrl = "http://34.48.21.54"
+    
+    // JSON Decoder
+    private let decoder = JSONDecoder()
+    
+    private init() {
+        decoder.dateDecodingStrategy = .iso8601
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+    }
     
     // MARK: - Requests
     
@@ -32,5 +42,19 @@ class NetworkManager {
         
     }
     
-    
+    func getQuestion(questionId: Int, completion: @escaping (Question?) -> Void) {
+        let endpoint = "\(baseUrl)/api/surveys/\(questionId)"
+        
+        AF.request(endpoint, method: .get)
+            .validate()
+            .responseDecodable(of: Question.self, decoder: decoder) { response in
+                switch response.result {
+                case .success(let question):
+                    completion(question)
+                case .failure(let error):
+                    print("Error in NetworkManager.getQuestion: \(error.localizedDescription)")
+                    completion(nil)
+                }
+            }
+    }
 }

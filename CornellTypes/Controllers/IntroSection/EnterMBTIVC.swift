@@ -159,7 +159,7 @@ class EnterMBTIVC: UIViewController {
     
     
     @objc private func pushResult() {
-        let vc = ResultVC()
+        let vc = QuizResultVC()
         navigationController?.pushViewController(vc, animated: true)
     }
     

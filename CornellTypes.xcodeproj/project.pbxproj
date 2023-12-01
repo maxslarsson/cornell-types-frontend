@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C25BD882B1A6B2400AFCCF8 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C25BD872B1A6B2400AFCCF8 /* Question.swift */; };
+		4C25BD8B2B1A7C5400AFCCF8 /* OptionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C25BD8A2B1A7C5400AFCCF8 /* OptionCollectionViewCell.swift */; };
+		4C25BD8D2B1A867900AFCCF8 /* QuizResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C25BD8C2B1A867900AFCCF8 /* QuizResultVC.swift */; };
 		4C3AA8052B197210006C8AD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AA8042B197210006C8AD4 /* AppDelegate.swift */; };
 		4C3AA8072B197210006C8AD4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AA8062B197210006C8AD4 /* SceneDelegate.swift */; };
 		4C3AA80E2B197211006C8AD4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C3AA80D2B197211006C8AD4 /* Assets.xcassets */; };
@@ -27,13 +30,15 @@
 		4CA4B40C2B19765D00584ADC /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4B4002B19765D00584ADC /* WelcomeVC.swift */; };
 		4CA4B40D2B19765D00584ADC /* EnterMBTIVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4B4012B19765D00584ADC /* EnterMBTIVC.swift */; };
 		4CA4B40E2B19765D00584ADC /* WhatsMBTIVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4B4022B19765D00584ADC /* WhatsMBTIVC.swift */; };
-		4CA4B40F2B19765D00584ADC /* ResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4B4042B19765D00584ADC /* ResultVC.swift */; };
 		4CA4B4102B19765D00584ADC /* QuizVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4B4052B19765D00584ADC /* QuizVC.swift */; };
 		4CA4B4112B19765D00584ADC /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4B4072B19765D00584ADC /* ProfileVC.swift */; };
 		4CA4B4122B19765D00584ADC /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4B4082B19765D00584ADC /* HomeVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C25BD872B1A6B2400AFCCF8 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		4C25BD8A2B1A7C5400AFCCF8 /* OptionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCollectionViewCell.swift; sourceTree = "<group>"; };
+		4C25BD8C2B1A867900AFCCF8 /* QuizResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizResultVC.swift; sourceTree = "<group>"; };
 		4C3AA8012B197210006C8AD4 /* CornellTypes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CornellTypes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C3AA8042B197210006C8AD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4C3AA8062B197210006C8AD4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,7 +60,6 @@
 		4CA4B4002B19765D00584ADC /* WelcomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
 		4CA4B4012B19765D00584ADC /* EnterMBTIVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterMBTIVC.swift; sourceTree = "<group>"; };
 		4CA4B4022B19765D00584ADC /* WhatsMBTIVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsMBTIVC.swift; sourceTree = "<group>"; };
-		4CA4B4042B19765D00584ADC /* ResultVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultVC.swift; sourceTree = "<group>"; };
 		4CA4B4052B19765D00584ADC /* QuizVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizVC.swift; sourceTree = "<group>"; };
 		4CA4B4072B19765D00584ADC /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		4CA4B4082B19765D00584ADC /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -73,6 +77,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C25BD892B1A7C0A00AFCCF8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4C25BD8A2B1A7C5400AFCCF8 /* OptionCollectionViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		4C3AA7F82B197210006C8AD4 = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				4CA4B3FB2B19765D00584ADC /* Controllers */,
+				4C25BD892B1A7C0A00AFCCF8 /* Views */,
 				4CA4B3C82B19759B00584ADC /* Fonts */,
 				4CA4B3B72B19751800584ADC /* Extensions */,
 				4CA4B3B22B19751400584ADC /* Models */,
@@ -119,6 +132,7 @@
 			children = (
 				4CA4B3B32B19751400584ADC /* User.swift */,
 				4CA4B3B42B19751400584ADC /* Post.swift */,
+				4C25BD872B1A6B2400AFCCF8 /* Question.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -169,8 +183,8 @@
 		4CA4B4032B19765D00584ADC /* QuizSection */ = {
 			isa = PBXGroup;
 			children = (
-				4CA4B4042B19765D00584ADC /* ResultVC.swift */,
 				4CA4B4052B19765D00584ADC /* QuizVC.swift */,
+				4C25BD8C2B1A867900AFCCF8 /* QuizResultVC.swift */,
 			);
 			path = QuizSection;
 			sourceTree = "<group>";
@@ -268,6 +282,8 @@
 				4CA4B4112B19765D00584ADC /* ProfileVC.swift in Sources */,
 				4CA4B3B12B19750500584ADC /* NetworkManager.swift in Sources */,
 				4CA4B4102B19765D00584ADC /* QuizVC.swift in Sources */,
+				4C25BD882B1A6B2400AFCCF8 /* Question.swift in Sources */,
+				4C25BD8D2B1A867900AFCCF8 /* QuizResultVC.swift in Sources */,
 				4CA4B40C2B19765D00584ADC /* WelcomeVC.swift in Sources */,
 				4CA4B3B92B19751800584ADC /* UIColorExtension.swift in Sources */,
 				4CA4B40A2B19765D00584ADC /* LoginVC.swift in Sources */,
@@ -275,12 +291,12 @@
 				4C3AA8052B197210006C8AD4 /* AppDelegate.swift in Sources */,
 				4CA4B40D2B19765D00584ADC /* EnterMBTIVC.swift in Sources */,
 				4CA4B4122B19765D00584ADC /* HomeVC.swift in Sources */,
+				4C25BD8B2B1A7C5400AFCCF8 /* OptionCollectionViewCell.swift in Sources */,
 				4CA4B3B62B19751400584ADC /* Post.swift in Sources */,
 				4CA4B40E2B19765D00584ADC /* WhatsMBTIVC.swift in Sources */,
 				4CA4B4092B19765D00584ADC /* ViewController.swift in Sources */,
 				4CA4B3B52B19751400584ADC /* User.swift in Sources */,
 				4C3AA8072B197210006C8AD4 /* SceneDelegate.swift in Sources */,
-				4CA4B40F2B19765D00584ADC /* ResultVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

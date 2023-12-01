@@ -154,7 +154,7 @@ class WelcomeVC: UIViewController {
     }
     
     @objc private func pushQuiz() {
-        let vc  = QuizVC()
+        let vc  = QuizVC(questionId: 1)
         navigationController?.pushViewController(vc, animated: true)
     }
     

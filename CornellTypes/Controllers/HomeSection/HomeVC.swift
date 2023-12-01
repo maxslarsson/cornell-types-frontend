@@ -14,12 +14,17 @@ class HomeVC: UIViewController {
     private let logo = UIImageView()
     private let exploreMBTITypes = UILabel()
     private let pfp = UIButton()
+    private let forwardButton = UIButton()
     private let mbtiStats = UIButton()
     private let nameLabel = UILabel()
     private let postButton = UIButton()
+    private var filterCollectionView: UICollectionView!
+    private var postCollectionView: UICollectionView!
+    private let refreshControl = UIRefreshControl()
     
     // MARK: - Properties (data)
     
+    private var filters: [String] = []
     private let posts: [Post] = []
     
     // MARK: - viewDidLoad

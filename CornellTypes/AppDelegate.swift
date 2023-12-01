@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  CornellTypes
 //
-//  Created by Alvaro Deras on 11/19/23.
+//  Created by Max Larsson on 11/30/23.
 //
 
 import UIKit

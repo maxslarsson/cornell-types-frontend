@@ -75,8 +75,19 @@ class NetworkManager {
         
     }
     
-    func fetchPosts(completion: @escaping ([Post]) -> Void) {
+    func getPosts(completion: @escaping ([Post]) -> Void) {
+        let endpoint = "\(baseUrl)/api/posts"
         
+        AF.request(endpoint, method: .get)
+            .validate()
+            .responseDecodable(of: [Post].self, decoder: decoder) { response in
+                switch response.result {
+                case .success(let posts):
+                    completion(posts)
+                case .failure(let error):
+                    print("Error in NetworkManager.getPosts: \(error.localizedDescription)")
+                }
+            }
     }
     
     func getQuestion(questionId: Int, completion: @escaping (Question?) -> Void) {

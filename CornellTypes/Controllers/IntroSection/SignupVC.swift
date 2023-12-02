@@ -13,13 +13,17 @@ class SignupVC: UIViewController {
     
     private let logo = UIImageView()
     private let subtitle = UILabel()
-    private let name = UITextField()
+    private let email = UITextField()
     private let username = UITextField()
     private let password = UITextField()
     private let signupButton = UIButton()
     private let backButton = UIButton()
+    private let college = UITextField()
+    //private let collegeName = UILabel()
     
     // MARK: - Properties (data)
+    
+    private var user: User!
     
     // MARK: - viewDidLoad
     
@@ -29,10 +33,12 @@ class SignupVC: UIViewController {
         
         setupLogo()
         setupSubtitle()
-        setupName()
+        setupEmail()
         setupUsername()
         setupPassword()
         setupSignup()
+        setupCollege()
+        //setupCollegeName()
         setupBackButton()
     }
     
@@ -66,32 +72,32 @@ class SignupVC: UIViewController {
         ])
     }
     
-    private func setupName() {
-        name.layer.borderColor = UIColor.hack.red.cgColor
-        name.layer.borderWidth = 2
-        name.layer.cornerRadius = 11
+    private func setupEmail() {
+        email.layer.borderColor = UIColor.hack.red.cgColor
+        email.layer.borderWidth = 2
+        email.layer.cornerRadius = 11
         
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: name.frame.height))
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: email.frame.height))
         
-        name.leftView = paddingView
-        name.leftViewMode = .always
+        email.leftView = paddingView
+        email.leftViewMode = .always
         
         let placeholderAttributes: [NSAttributedString.Key: Any] = [
                 .foregroundColor: UIColor.hack.darkpink,
                 .font: UIFont(name: "Fredoka-Medium", size: 22)!
             ]
             
-        let attributedPlaceholder = NSAttributedString(string: "name", attributes: placeholderAttributes)
+        let attributedPlaceholder = NSAttributedString(string: "cornell email", attributes: placeholderAttributes)
             
-        name.attributedPlaceholder = attributedPlaceholder
-        view.addSubview(name)
-        name.translatesAutoresizingMaskIntoConstraints = false
+        email.attributedPlaceholder = attributedPlaceholder
+        view.addSubview(email)
+        email.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            name.topAnchor.constraint(equalTo: view.topAnchor, constant: 360),
-            name.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 66),
-            name.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -66),
-            name.heightAnchor.constraint(equalToConstant: 50)
+            email.topAnchor.constraint(equalTo: view.topAnchor, constant: 360),
+            email.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 66),
+            email.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -66),
+            email.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     
@@ -159,19 +165,64 @@ class SignupVC: UIViewController {
         signupButton.setTitleColor(UIColor.hack.white, for: .normal)
         signupButton.setBackgroundImage(UIImage(named: "tanrect"), for: .normal)
         signupButton.layer.cornerRadius = 16
-        signupButton.addTarget(self, action: #selector(pushWelcome), for: .touchUpInside)
+        signupButton.addTarget(self, action: #selector(pushVerification), for: .touchUpInside)
         
         view.addSubview(signupButton)
         signupButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            signupButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 605),
+            signupButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 662),
             signupButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 107),
             signupButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -109),
             signupButton.widthAnchor.constraint(equalToConstant: 149),
             signupButton.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
+    
+    private func setupCollege() {
+        college.layer.borderColor = UIColor.hack.red.cgColor
+        college.layer.borderWidth = 2
+        college.layer.cornerRadius = 11
+        
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: college.frame.height))
+        
+        college.leftView = paddingView
+        college.leftViewMode = .always
+        
+        let placeholderAttributes: [NSAttributedString.Key: Any] = [
+                .foregroundColor: UIColor.hack.darkpink,
+                .font: UIFont(name: "Fredoka-Medium", size: 22)!
+            ]
+            
+        let attributedPlaceholder = NSAttributedString(string: "college", attributes: placeholderAttributes)
+            
+        college.attributedPlaceholder = attributedPlaceholder
+        view.addSubview(college)
+        college.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            college.topAnchor.constraint(equalTo: view.topAnchor, constant: 585),
+            college.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 66),
+            college.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -66),
+            college.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
+//    private func setupCollegeName() {
+//        collegeName.text = "* Exact format: Cornell SC Johnson College of Business, College of Arts and Sciences, School of Hotel Administration"
+//        collegeName.textColor = UIColor.hack.darkpink
+//        collegeName.font = UIFont(name: "Fredoka-Regular", size: 14)
+//        collegeName.numberOfLines = 0
+//
+//        view.addSubview(collegeName)
+//        collegeName.translatesAutoresizingMaskIntoConstraints = false
+//
+//        NSLayoutConstraint.activate([
+//            collegeName.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            collegeName.topAnchor.constraint(equalTo: signupButton.bottomAnchor, constant: 20),
+//            collegeName.widthAnchor.constraint(equalToConstant: 250)
+//        ])
+//    }
     
     private func setupBackButton() {
         backButton.setImage(UIImage(named: "back"), for: .normal)
@@ -185,11 +236,33 @@ class SignupVC: UIViewController {
         navigationItem.leftBarButtonItem = customBackButton
     }
     
-    @objc private func pushWelcome() {
-        let vc  = WelcomeVC()
-        navigationController?.pushViewController(vc, animated: true)
+    @objc private func pushVerification() {
+        print("pushing verification")
+        let user = User(
+            email: lowercasedFirstLetter(email.text ?? ""),
+            username: lowercasedFirstLetter(username.text ?? ""),
+            password: password.text ?? "",
+            school: college.text ?? ""
+        )
+        
+        NetworkManager.shared.registerUser(user: user) { registeredUser in
+            print("User registered successfully: \(registeredUser)")
+            
+            let vc = VerificationVC()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
-    
+
+
+    private func lowercasedFirstLetter(_ text: String) -> String {
+        guard let firstCharacter = text.first else {
+            return text
+        }
+        
+        return String(firstCharacter).lowercased() + String(text.dropFirst())
+    }
+
+
     @objc private func popVC() {
         navigationController?.popViewController(animated: true)
     }

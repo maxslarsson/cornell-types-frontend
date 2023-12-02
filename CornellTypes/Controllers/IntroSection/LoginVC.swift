@@ -156,8 +156,22 @@ class LoginVC: UIViewController {
     }
     
     @objc private func pushHome() {
-        let vc  = HomeVC()
-        navigationController?.pushViewController(vc, animated: true)
+        let user = User(
+            email: "",
+            username: username.text?.lowercased() ?? "",
+            password: password.text ?? "",
+            school: ""
+        )
+
+        // Call loginUser function from NetworkManager
+        NetworkManager.shared.loginUser(user: user) { loggedInUser in
+        
+            print("User logged in successfully: \(loggedInUser)")
+
+            
+            let vc = HomeVC()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     @objc private func popVC() {

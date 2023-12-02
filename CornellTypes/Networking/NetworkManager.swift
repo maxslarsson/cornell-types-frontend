@@ -26,12 +26,50 @@ class NetworkManager {
     
     // MARK: - Requests
     
-    func registerUser(completion: @escaping (User) -> Void) {
+    func registerUser(user: User, completion: @escaping (User) -> Void) {
+        let endpoint = "\(baseUrl)/api/users/register/"
         
+        let parameters: Parameters = [
+            "email": user.email,
+            "username": user.username,
+            "password": user.password,
+            "school": user.school
+        ]
+        
+        AF.request(endpoint, method: .post, parameters: parameters)
+            .validate()
+            .responseDecodable(of: User.self, decoder: decoder) { response in
+                switch response.result {
+                case .success(let user):
+                    print("Successfully registered user")
+                    completion(user)
+                case .failure(let error):
+                    print("Error in NetworkManager.registerUser: \(error.localizedDescription)")
+                    
+                }
+            }
     }
     
-    func loginUser(completion: @escaping (User) -> Void) {
+    func loginUser(user: User, completion: @escaping (User) -> Void) {
+        let endpoint = "\(baseUrl)/api/users/login/\(user.username)"
         
+        let parameters: Parameters = [
+            "email": user.email,
+            "username": user.username,
+            "password": user.password
+        ]
+        
+        AF.request(endpoint, method: .post, parameters: parameters)
+            .validate()
+            .responseDecodable(of: User.self, decoder: decoder) { response in
+                switch response.result {
+                case .success(let user):
+                    print("Successfully logged in user")
+                    completion(user)
+                case .failure(let error):
+                    print("Error in NetworkManager.loginUser: \(error.localizedDescription)")
+                }
+            }
     }
     
     func logoutUser(completion: @escaping (User) -> Void) {

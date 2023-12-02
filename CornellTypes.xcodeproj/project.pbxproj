@@ -33,6 +33,7 @@
 		4CA4B4102B19765D00584ADC /* QuizVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4B4052B19765D00584ADC /* QuizVC.swift */; };
 		4CA4B4112B19765D00584ADC /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4B4072B19765D00584ADC /* ProfileVC.swift */; };
 		4CA4B4122B19765D00584ADC /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4B4082B19765D00584ADC /* HomeVC.swift */; };
+		81D65A472B1A9FD900184D9E /* VerificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D65A462B1A9FD900184D9E /* VerificationVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		4CA4B4052B19765D00584ADC /* QuizVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizVC.swift; sourceTree = "<group>"; };
 		4CA4B4072B19765D00584ADC /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		4CA4B4082B19765D00584ADC /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		81D65A462B1A9FD900184D9E /* VerificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +175,7 @@
 				4CA4B3FD2B19765D00584ADC /* ViewController.swift */,
 				4CA4B3FE2B19765D00584ADC /* LoginVC.swift */,
 				4CA4B3FF2B19765D00584ADC /* SignupVC.swift */,
+				81D65A462B1A9FD900184D9E /* VerificationVC.swift */,
 				4CA4B4002B19765D00584ADC /* WelcomeVC.swift */,
 				4CA4B4012B19765D00584ADC /* EnterMBTIVC.swift */,
 				4CA4B4022B19765D00584ADC /* WhatsMBTIVC.swift */,
@@ -280,6 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CA4B4112B19765D00584ADC /* ProfileVC.swift in Sources */,
+				81D65A472B1A9FD900184D9E /* VerificationVC.swift in Sources */,
 				4CA4B3B12B19750500584ADC /* NetworkManager.swift in Sources */,
 				4CA4B4102B19765D00584ADC /* QuizVC.swift in Sources */,
 				4C25BD882B1A6B2400AFCCF8 /* Question.swift in Sources */,

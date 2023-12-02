@@ -22,6 +22,13 @@ class QuizVC: UIViewController {
         UIColor.hack.purple,
         UIColor.hack.blue,
     ]
+    private static let bearImages = [
+        UIImage(named: "bearreading"),
+        UIImage(named: "bearcozy"),
+        UIImage(named: "bearcelebration"),
+        UIImage(named: "beartwo"),
+        UIImage(named: "bearsneaky"),
+    ]
     
     // MARK: init
     
@@ -70,7 +77,7 @@ class QuizVC: UIViewController {
     
     private func setupBearImageView() {
         bearImageView.translatesAutoresizingMaskIntoConstraints = false
-        bearImageView.image = UIImage(named: "bearreading")
+        bearImageView.image = QuizVC.bearImages[question?.questionNo ?? 0 % QuizVC.bearImages.count]
         bearImageView.contentMode = .scaleAspectFit
         view.addSubview(bearImageView)
         NSLayoutConstraint.activate([

@@ -73,6 +73,8 @@ class SignupVC: UIViewController {
     }
     
     private func setupEmail() {
+        email.keyboardType = .emailAddress
+        email.autocapitalizationType = .none
         email.layer.borderColor = UIColor.hack.red.cgColor
         email.layer.borderWidth = 2
         email.layer.cornerRadius = 11
@@ -102,6 +104,7 @@ class SignupVC: UIViewController {
     }
     
     private func setupUsername() {
+        username.autocapitalizationType = .none
         username.layer.borderColor = UIColor.hack.red.cgColor
         username.layer.borderWidth = 2
         username.layer.cornerRadius = 11
@@ -131,6 +134,8 @@ class SignupVC: UIViewController {
     }
     
     private func setupPassword() {
+        password.isSecureTextEntry = true
+        password.autocapitalizationType = .none
         password.layer.borderColor = UIColor.hack.red.cgColor
         password.layer.borderWidth = 2
         password.layer.cornerRadius = 11
@@ -237,10 +242,9 @@ class SignupVC: UIViewController {
     }
     
     @objc private func pushVerification() {
-        print("pushing verification")
         let user = User(
-            email: lowercasedFirstLetter(email.text ?? ""),
-            username: lowercasedFirstLetter(username.text ?? ""),
+            email: email.text ?? "",
+            username: username.text ?? "",
             password: password.text ?? "",
             school: college.text ?? ""
         )
@@ -251,15 +255,6 @@ class SignupVC: UIViewController {
             let vc = VerificationVC()
             self.navigationController?.pushViewController(vc, animated: true)
         }
-    }
-
-
-    private func lowercasedFirstLetter(_ text: String) -> String {
-        guard let firstCharacter = text.first else {
-            return text
-        }
-        
-        return String(firstCharacter).lowercased() + String(text.dropFirst())
     }
 
 

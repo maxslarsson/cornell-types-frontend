@@ -36,7 +36,7 @@ class NetworkManager {
             "school": user.school
         ]
         
-        AF.request(endpoint, method: .post, parameters: parameters)
+        AF.request(endpoint, method: .post, parameters: parameters, encoding: JSONEncoding.default)
             .validate()
             .responseDecodable(of: User.self, decoder: decoder) { response in
                 switch response.result {
@@ -45,7 +45,6 @@ class NetworkManager {
                     completion(user)
                 case .failure(let error):
                     print("Error in NetworkManager.registerUser: \(error.localizedDescription)")
-                    
                 }
             }
     }
@@ -59,7 +58,7 @@ class NetworkManager {
             "password": user.password
         ]
         
-        AF.request(endpoint, method: .post, parameters: parameters)
+        AF.request(endpoint, method: .post, parameters: parameters, encoding: JSONEncoding.default)
             .validate()
             .responseDecodable(of: User.self, decoder: decoder) { response in
                 switch response.result {

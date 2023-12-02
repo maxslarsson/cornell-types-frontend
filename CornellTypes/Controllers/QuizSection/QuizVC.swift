@@ -42,6 +42,7 @@ class QuizVC: UIViewController {
             DispatchQueue.main.async {
                 self.setupTitleLabel()
                 self.setupQuestionLabel()
+                self.setupBearImageView()
                 self.optionsCollectionView.reloadData()
             }
         }

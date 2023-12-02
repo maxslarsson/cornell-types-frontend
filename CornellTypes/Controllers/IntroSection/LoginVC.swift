@@ -43,8 +43,8 @@ class LoginVC: UIViewController {
         logo.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             logo.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 28),
+            logo.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -28),
             logo.topAnchor.constraint(equalTo: view.topAnchor, constant: 91),
-            logo.widthAnchor.constraint(equalToConstant: 346),
             logo.heightAnchor.constraint(equalToConstant: 187.9)
         ])
     }
@@ -137,8 +137,7 @@ class LoginVC: UIViewController {
         NSLayoutConstraint.activate([
             loginButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 554),
             loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 107),
-            loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -109),
-            loginButton.widthAnchor.constraint(equalToConstant: 149),
+            loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -107),
             loginButton.heightAnchor.constraint(equalToConstant: 60)
         ])
     }

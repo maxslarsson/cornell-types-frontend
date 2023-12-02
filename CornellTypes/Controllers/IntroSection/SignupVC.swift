@@ -51,8 +51,8 @@ class SignupVC: UIViewController {
         logo.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             logo.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 28),
+            logo.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -28),
             logo.topAnchor.constraint(equalTo: view.topAnchor, constant: 91),
-            logo.widthAnchor.constraint(equalToConstant: 346),
             logo.heightAnchor.constraint(equalToConstant: 187.9)
         ])
     }
@@ -178,8 +178,7 @@ class SignupVC: UIViewController {
         NSLayoutConstraint.activate([
             signupButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 662),
             signupButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 107),
-            signupButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -109),
-            signupButton.widthAnchor.constraint(equalToConstant: 149),
+            signupButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -107),
             signupButton.heightAnchor.constraint(equalToConstant: 60)
         ])
     }

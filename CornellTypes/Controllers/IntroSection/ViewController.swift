@@ -42,8 +42,8 @@ class ViewController: UIViewController {
         logo.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             logo.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 28),
+            logo.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -28),
             logo.topAnchor.constraint(equalTo: view.topAnchor, constant: 161),
-            logo.widthAnchor.constraint(equalToConstant: 346),
             logo.heightAnchor.constraint(equalToConstant: 187.9)
         ])
     }
@@ -76,8 +76,7 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate([
             login.topAnchor.constraint(equalTo: view.topAnchor, constant: 436),
             login.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 64),
-            login.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -68),
-            login.widthAnchor.constraint(equalToConstant: 243),
+            login.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -64),
             login.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
@@ -96,8 +95,7 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate([
             signup.topAnchor.constraint(equalTo: view.topAnchor, constant: 513),
             signup.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 64),
-            signup.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -68),
-            signup.widthAnchor.constraint(equalToConstant: 243),
+            signup.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -64),
             signup.heightAnchor.constraint(equalToConstant: 50)
         ])
     }

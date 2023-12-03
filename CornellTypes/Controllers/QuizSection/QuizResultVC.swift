@@ -9,6 +9,12 @@ import UIKit
 
 class QuizResultVC: UIViewController {
     
+    // MARK: - Properties (view)
+    
+    // MARK: - Properties (data)
+    
+    private var user: User!
+    
     // MARK: - viewDidLoad
     
     override func viewDidLoad() {

@@ -23,7 +23,7 @@ class SignupVC: UIViewController {
     
     // MARK: - Properties (data)
     
-    private var user: User!
+    public var user: User!
     
     // MARK: - viewDidLoad
     
@@ -248,11 +248,15 @@ class SignupVC: UIViewController {
             school: college.text ?? ""
         )
         
-        NetworkManager.shared.registerUser(user: user) { registeredUser in
-            print("User registered successfully: \(registeredUser)")
+        let vc = VerificationVC(user: user)
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+        NetworkManager.shared.registerUser(user: user) { [weak self] registeredUser in
+            guard let self = self else { return }
+            print("User registered successfully: \(registeredUser.username)")
             
-            let vc = VerificationVC()
-            self.navigationController?.pushViewController(vc, animated: true)
+            DispatchQueue.main.async {
+            }
         }
     }
 

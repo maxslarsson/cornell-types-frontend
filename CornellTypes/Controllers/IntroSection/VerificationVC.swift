@@ -19,6 +19,21 @@ class VerificationVC: UIViewController {
     private let submit = UIButton()
     private let backButton = UIButton()
     
+    // MARK: - Properties (data)
+    
+    private var user: User!
+    
+    // MARK: - init
+    
+    init(user: User) {
+        self.user = user
+        super.init(nibName: nil, bundle: nil)
+    }
+        
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - viewDidLoad
     
     override func viewDidLoad() {
@@ -141,8 +156,19 @@ class VerificationVC: UIViewController {
     }
     
     @objc private func pushWelcome() {
-        let vc  = WelcomeVC()
-        navigationController?.pushViewController(vc, animated: true)
+        
+        let verificationCode: String = typeHere.text ?? ""
+        
+        NetworkManager.shared.verifyUser(code: verificationCode) { [weak self] result in
+            guard let self = self else { return }
+            print("\(result)")
+            
+            DispatchQueue.main.async {
+                let vc = WelcomeVC(user: self.user)
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            
+        }
     }
     
     @objc private func popVC() {

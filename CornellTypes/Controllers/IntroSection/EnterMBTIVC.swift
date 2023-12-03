@@ -21,6 +21,19 @@ class EnterMBTIVC: UIViewController {
     
     // MARK: - Properties (data)
     
+    private var user: User!
+    
+    // MARK: - init
+    
+    init(user: User) {
+        self.user = user
+        super.init(nibName: nil, bundle: nil)
+    }
+        
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - viewDidLoad
     
     override func viewDidLoad() {
@@ -159,8 +172,16 @@ class EnterMBTIVC: UIViewController {
     
     
     @objc private func pushResult() {
-        let vc = QuizResultVC()
-        navigationController?.pushViewController(vc, animated: true)
+        
+        NetworkManager.shared.enterMBTI(type: mbtiText.text!, user: user) { [weak self] personalityType in
+            guard let self = self else { return }
+            print("Successfully assigned \(personalityType)")
+            
+            DispatchQueue.main.async {
+                let vc = QuizResultVC()
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
     }
     
     @objc private func popVC() {

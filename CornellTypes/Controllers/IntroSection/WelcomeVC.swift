@@ -22,6 +22,19 @@ class WelcomeVC: UIViewController {
     
     // MARK: - Properties (data)
     
+    private var user: User!
+    
+    // MARK: - init
+    
+    init(user: User) {
+        self.user = user
+        super.init(nibName: nil, bundle: nil)
+    }
+        
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     // MARK: - viewDidLoad
     
     override func viewDidLoad() {
@@ -159,7 +172,7 @@ class WelcomeVC: UIViewController {
     }
     
     @objc private func pushEnterMBTI() {
-        let vc  = EnterMBTIVC()
+        let vc  = EnterMBTIVC(user: user)
         navigationController?.pushViewController(vc, animated: true)
     }
     

@@ -24,6 +24,7 @@ class HomeVC: UIViewController {
     // MARK: - Properties (data)
     
     private var posts: [Post] = []
+    private var user: User!
     
     // MARK: - viewDidLoad
     
@@ -37,6 +38,17 @@ class HomeVC: UIViewController {
         setupExploreMBTITypes()
         setupMBTIStats()
         setupPostButton()
+    }
+    
+    // MARK: - init
+    
+    init(user: User) {
+        self.user = user
+        super.init(nibName: nil, bundle: nil)
+    }
+        
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Set Up Views
@@ -58,7 +70,7 @@ class HomeVC: UIViewController {
     private func setupPFP() {
         pfp.setBackgroundImage(UIImage(named: "bearprofile"), for: .normal)
         pfp.layer.masksToBounds = true
-//        pfp.addTarget(self, action: #selector(pushUserProfile), for: .touchUpInside)
+        pfp.addTarget(self, action: #selector(pushUserProfile), for: .touchUpInside)
         
         view.addSubview(pfp)
         pfp.translatesAutoresizingMaskIntoConstraints = false
@@ -132,6 +144,11 @@ class HomeVC: UIViewController {
                 self.postCollectionView.reloadData()
             }
         }
+    }
+    
+    @objc private func pushUserProfile() {
+        let vc = ProfileVC(user: user)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     private func setupCollectionView(){

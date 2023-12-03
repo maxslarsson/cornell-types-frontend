@@ -20,6 +20,8 @@ class LoginVC: UIViewController {
     
     // MARK: - Properties (data)
     
+    private var user: User!
+    
     // MARK: - viewDidLoad
     
     override func viewDidLoad() {
@@ -69,6 +71,7 @@ class LoginVC: UIViewController {
         username.layer.borderColor = UIColor.hack.red.cgColor
         username.layer.borderWidth = 2
         username.layer.cornerRadius = 11
+        username.autocapitalizationType = .none
         
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: username.frame.height))
         
@@ -98,6 +101,7 @@ class LoginVC: UIViewController {
         password.layer.borderColor = UIColor.hack.red.cgColor
         password.layer.borderWidth = 2
         password.layer.cornerRadius = 11
+        password.autocapitalizationType = .none
         
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: password.frame.height))
         
@@ -155,21 +159,23 @@ class LoginVC: UIViewController {
     }
     
     @objc private func pushHome() {
-        let user = User(
+        user = User(
             email: "",
-            username: username.text?.lowercased() ?? "",
+            username: username.text ?? "",
             password: password.text ?? "",
             school: ""
         )
 
-        // Call loginUser function from NetworkManager
-        NetworkManager.shared.loginUser(user: user) { loggedInUser in
-        
+        NetworkManager.shared.loginUser(user: user) { [weak self] loggedInUser in
+            guard let self = self else { return }
             print("User logged in successfully: \(loggedInUser)")
 
-            
-            let vc = HomeVC()
-            self.navigationController?.pushViewController(vc, animated: true)
+            DispatchQueue.main.async {
+                let newUser = User(email: loggedInUser.email, username: loggedInUser.username, password: loggedInUser.password, school: loggedInUser.school)
+                let vc = HomeVC(user: loggedInUser)
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+
         }
     }
     

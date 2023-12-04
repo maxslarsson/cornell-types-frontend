@@ -75,7 +75,7 @@ class EnterMBTIVC: UIViewController {
         NSLayoutConstraint.activate([
             mbti.topAnchor.constraint(equalTo: view.topAnchor, constant: 142.48),
             mbti.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 99.85),
-            mbti.widthAnchor.constraint(equalToConstant: 197),
+            mbti.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -99.85),
             mbti.heightAnchor.constraint(equalToConstant: 74)
         ])
     }
@@ -96,6 +96,7 @@ class EnterMBTIVC: UIViewController {
     }
     
     private func setupType() {
+        mbtiText.autocapitalizationType = .allCharacters
         mbtiText.layer.borderColor = UIColor.hack.red.cgColor
         mbtiText.layer.borderWidth = 2
         mbtiText.layer.cornerRadius = 11
@@ -139,7 +140,6 @@ class EnterMBTIVC: UIViewController {
             submit.topAnchor.constraint(equalTo: view.topAnchor, constant: 378),
             submit.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 108),
             submit.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -108),
-            submit.widthAnchor.constraint(equalToConstant: 159),
             submit.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
@@ -165,20 +165,21 @@ class EnterMBTIVC: UIViewController {
         NSLayoutConstraint.activate([
             bear.topAnchor.constraint(equalTo: view.topAnchor, constant: 416),
             bear.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 45),
-            bear.widthAnchor.constraint(equalToConstant: 313),
+            bear.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -45),
             bear.heightAnchor.constraint(equalToConstant: 445)
         ])
     }
     
     
     @objc private func pushResult() {
-        guard let type = mbtiText.text else { return }
+        guard let type = mbtiText.text?.uppercased() else { return }
         
-        NetworkManager.shared.enterMBTI(user: user, type: type) { [weak self] personalityType in
-            guard let self = self else { return }
-            
-            let vc = QuizResultVC(user: self.user)
-            self.navigationController?.pushViewController(vc, animated: true)
+        NetworkManager.shared.enterMBTI(user: self.user, type: type) {
+            NetworkManager.shared.getUserByUsername(username: self.user.username) { [weak self] user in
+                guard let self = self else { return }
+                let vc = QuizResultVC(user: user)
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         }
     }
     

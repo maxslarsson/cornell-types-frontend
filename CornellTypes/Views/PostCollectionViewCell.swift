@@ -8,15 +8,20 @@
 import Foundation
 import UIKit
 
+protocol PostCollectionViewCellDelegate {
+    func goToUsersProfile(user: User)
+}
+
 class PostCollectionViewCell: UICollectionViewCell {
     // MARK: - Properties (view)
-    let image = UIImageView()
+    let image = UIButton()
     let username = UIButton()
     let message = UILabel()
     let background = UIImageView()
     let circle = UIImageView()
     
     // MARK: - Properties (data)
+    var delegate: PostCollectionViewCellDelegate?
     static let reuse: String = "PostCollectionViewCellReuse"
     private var post: Post!
     
@@ -55,7 +60,8 @@ class PostCollectionViewCell: UICollectionViewCell {
         
         NetworkManager.shared.getUserByUsername(username: post.user) { [weak self] user in
             guard let self = self else { return }
-            self.image.image = UIImage(named: "\(user.personality.lowercased())bear")
+            let image = UIImage(named: "\(user.personality.lowercased())bear")
+            self.image.setImage(image, for: .normal)
             switch user.personality {
             case "INFJ", "INFP", "ENFJ", "ENFP":
                 username.setBackgroundImage(UIImage(named: "greenuserrect"), for: .normal)
@@ -80,7 +86,7 @@ class PostCollectionViewCell: UICollectionViewCell {
     private func setupUsername() {
         username.translatesAutoresizingMaskIntoConstraints = false
         username.layer.cornerRadius = 10
-        //username.addTarget(self, action: #selector(pushUserProfile), for: .touchUpInside)
+        username.addTarget(self, action: #selector(pushUserProfile), for: .touchUpInside)
         username.setTitleColor(UIColor.hack.white, for: .normal)
         
         contentView.addSubview(username)
@@ -113,6 +119,7 @@ class PostCollectionViewCell: UICollectionViewCell {
     private func setupImage() {
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFit
+        image.addTarget(self, action: #selector(pushUserProfile), for: .touchUpInside)
         contentView.addSubview(image)
         NSLayoutConstraint.activate([
             image.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 6),
@@ -148,11 +155,11 @@ class PostCollectionViewCell: UICollectionViewCell {
         ])
     }
     
-//    @objc private func pushUserProfile() {
-//        NetworkManager.shared.getUserByUsername(username: post.user) { [weak self] user in
-//            guard let self = self else { return }
-//            let vc = UserProfileVC(user: user)
-//            navigationController?.pushViewController(vc, animated: true)
-//   }
+    @objc private func pushUserProfile() {
+        NetworkManager.shared.getUserByUsername(username: post.user) { [weak self] user in
+            guard let self = self else { return }
+            self.delegate?.goToUsersProfile(user: user)
+        }
+   }
 }
 

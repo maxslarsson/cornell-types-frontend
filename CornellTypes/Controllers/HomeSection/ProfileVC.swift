@@ -17,7 +17,6 @@ class ProfileVC: UIViewController {
     private let bear = UIImageView()
     private let type = UIButton()
     private let school = UIButton()
-    private let name = UITextField()
     private let bio = UITextField()
     private let logOut = UIButton()
     private let backButton = UIButton()
@@ -25,25 +24,6 @@ class ProfileVC: UIViewController {
     // MARK: - Properties (data)
     
     private var user: User!
-    
-    // MARK: - viewDidLoad
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = UIColor.hack.white
-        
-        updateUI()
-        setupMyProfile()
-        setupSquare()
-        setupBear()
-        setupTape()
-        setupType()
-        setupSchool()
-        //setupName()
-        setupBio()
-        setupLogOut()
-        setupBackButton()
-    }
     
     // MARK: - init
     
@@ -56,50 +36,69 @@ class ProfileVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func updateUI() {
+    // MARK: - viewDidLoad
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = UIColor.hack.white
+        
+        setupMyProfile()
+        setupSquare()
+        setupBear()
+        setupTape()
+        setupType()
+        setupSchool()
+        setupBio()
+        setupLogOut()
+        setupBackButton()
         
         NetworkManager.shared.getUserByUsername(username: user.username) { [weak self] user in
             guard let self = self else { return }
-            self.bear.image = UIImage(named: "\(user.personality.lowercased())bear")
-            self.type.setTitle(user.personality, for: .normal)
-            
-            switch user.personality {
-            case "INFJ", "INFP", "ENFJ", "ENFP":
-                type.setBackgroundImage(UIImage(named: "greenrect"), for: .normal)
-                type.setTitle(user.personality, for: .normal)
-            case "INTJ", "INTP", "ENTJ", "ENTP":
-                type.setBackgroundImage(UIImage(named: "purpleuserrect"), for: .normal)
-            case "ISTP", "ISFP", "ESTP", "ESFP":
-                type.setBackgroundImage(UIImage(named: "yellowrect"), for: .normal)
-            case "ISTJ", "ISFJ", "ESTJ", "ESFJ":
-                type.setBackgroundImage(UIImage(named: "bluerect"), for: .normal)
-            default:
-                print(user.personality)
-            }
-            
-            switch user.school {
-            case "cals":
-                school.setBackgroundImage(UIImage(named: "greenrect"), for: .normal)
-                school.setTitle("cals", for: .normal)
-            case "aap":
-                school.setBackgroundImage(UIImage(named: "bluerect"), for: .normal)
-                school.setTitle("aap", for: .normal)
-            case "a&s":
-                school.setBackgroundImage(UIImage(named: "redrect"), for: .normal)
-                school.setTitle("cas", for: .normal)
-            case "engineering":
-                school.setBackgroundImage(UIImage(named: "purplerect"), for: .normal)
-                school.setTitle("engineering", for: .normal)
-            case "ilr":
-                school.setBackgroundImage(UIImage(named: "grayrect"), for: .normal)
-                school.setTitle("ilr", for: .normal)
-            case "hotel/dyson":
-                school.setBackgroundImage(UIImage(named: "pinkrect"), for: .normal)
-                school.setTitle("hotel/dyson", for: .normal)
-            default:
-                school.setBackgroundImage(UIImage(named: "tanrect"), for: .normal)
-                school.setTitle("hum ec", for: .normal)
-            }
+            self.user = user
+            self.updateUI()
+        }
+    }
+    
+    func updateUI() {
+        bio.text = user.bio
+        bear.image = UIImage(named: "\(user.personality.lowercased())bear")
+        type.setTitle(user.personality, for: .normal)
+        
+        switch user.personality {
+        case "INFJ", "INFP", "ENFJ", "ENFP":
+            type.setBackgroundImage(UIImage(named: "greenrect"), for: .normal)
+        case "INTJ", "INTP", "ENTJ", "ENTP":
+            type.setBackgroundImage(UIImage(named: "purplerect"), for: .normal)
+        case "ISTP", "ISFP", "ESTP", "ESFP":
+            type.setBackgroundImage(UIImage(named: "yellowrect"), for: .normal)
+        case "ISTJ", "ISFJ", "ESTJ", "ESFJ":
+            type.setBackgroundImage(UIImage(named: "bluerect"), for: .normal)
+        default:
+            print(user.personality)
+        }
+        
+        switch user.school {
+        case "cals":
+            school.setBackgroundImage(UIImage(named: "greenrect"), for: .normal)
+            school.setTitle("cals", for: .normal)
+        case "aap":
+            school.setBackgroundImage(UIImage(named: "bluerect"), for: .normal)
+            school.setTitle("aap", for: .normal)
+        case "a&s":
+            school.setBackgroundImage(UIImage(named: "redrect"), for: .normal)
+            school.setTitle("cas", for: .normal)
+        case "engineering":
+            school.setBackgroundImage(UIImage(named: "purplerect"), for: .normal)
+            school.setTitle("engineering", for: .normal)
+        case "ilr":
+            school.setBackgroundImage(UIImage(named: "grayrect"), for: .normal)
+            school.setTitle("ilr", for: .normal)
+        case "hotel/dyson":
+            school.setBackgroundImage(UIImage(named: "pinkrect"), for: .normal)
+            school.setTitle("hotel/dyson", for: .normal)
+        default:
+            school.setBackgroundImage(UIImage(named: "tanrect"), for: .normal)
+            school.setTitle("hum ec", for: .normal)
         }
     }
     
@@ -215,36 +214,6 @@ class ProfileVC: UIViewController {
         ])
     }
     
-//    private func setupName() {
-//        name.layer.borderColor = UIColor.hack.red.cgColor
-//        name.layer.borderWidth = 2
-//        name.layer.cornerRadius = 11
-//        name.autocapitalizationType = .none
-//
-//        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: name.frame.height))
-//
-//        name.leftView = paddingView
-//        name.leftViewMode = .always
-//
-//        let placeholderAttributes: [NSAttributedString.Key: Any] = [
-//                .foregroundColor: UIColor.hack.darkpink,
-//                .font: UIFont(name: "Fredoka-Medium", size: 22)!
-//            ]
-//
-//        let attributedPlaceholder = NSAttributedString(string: "name here", attributes: placeholderAttributes)
-//
-//        name.attributedPlaceholder = attributedPlaceholder
-//        view.addSubview(name)
-//        name.translatesAutoresizingMaskIntoConstraints = false
-//
-//        NSLayoutConstraint.activate([
-//            name.topAnchor.constraint(equalTo: myProfile.bottomAnchor, constant: 463),
-//            name.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 68),
-//            name.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -74),
-//            name.heightAnchor.constraint(equalToConstant: 50)
-//        ])
-//    }
-    
     private func setupBio() {
         bio.layer.borderColor = UIColor.hack.red.cgColor
         bio.layer.borderWidth = 2
@@ -278,8 +247,7 @@ class ProfileVC: UIViewController {
     
     private func setupBackButton() {
         backButton.setImage(UIImage(named: "back"), for: .normal)
-        backButton.addTarget(self, action: #selector(popVC), for: .touchUpInside)
-        backButton.addTarget(self, action: #selector(updateBio), for: .touchUpInside)
+        backButton.addTarget(self, action: #selector(updateBioAndPopVC), for: .touchUpInside)
         
         backButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([backButton.widthAnchor.constraint(equalToConstant: 14),
@@ -289,7 +257,7 @@ class ProfileVC: UIViewController {
         navigationItem.leftBarButtonItem = customBackButton
     }
 
-    @objc private func updateBio() {
+    @objc private func updateBioAndPopVC() {
         guard let text = bio.text else { return }
         
         NetworkManager.shared.updateBio(user: user, text: text) {
@@ -306,9 +274,4 @@ class ProfileVC: UIViewController {
         let vc = QuizResultVC(user: user)
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
-    @objc private func popVC() {
-        navigationController?.popViewController(animated: true)
-    }
-    
 }

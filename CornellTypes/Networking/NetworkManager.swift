@@ -78,7 +78,7 @@ class NetworkManager {
             }
     }
     
-    func enterMBTI(user: User, type: String, completion: @escaping (String) -> Void) {
+    func enterMBTI(user: User, type: String, completion: @escaping () -> Void) {
         let endpoint = "\(baseUrl)/api/users/\(user.username)/personality/"
         
         let parameters: Parameters = [
@@ -87,11 +87,11 @@ class NetworkManager {
         
         AF.request(endpoint, method: .post, parameters: parameters, encoding: JSONEncoding.default)
             .validate()
-            .responseDecodable(of: String.self, decoder: decoder) { response in
+            .response { response in
                 switch response.result {
-                case .success(let mbti):
+                case .success(_):
                     print("Successfully assigned MBTI")
-                    completion(mbti)
+                    completion()
                 case .failure(let error):
                     print("Error in NetworkManager.enterMBTI: \(error.localizedDescription)")
                 }

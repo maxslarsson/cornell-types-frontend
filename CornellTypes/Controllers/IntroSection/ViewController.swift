@@ -107,8 +107,8 @@ class ViewController: UIViewController {
     }
     
     @objc private func pushSignup() {
-       // let vc = SignupVC()
-        let vc = VerificationVC(username: "alvaro12")
+        let vc = SignupVC()
+//        let vc = VerificationVC(username: "alvaro12")
 //        let vc = VerificationVC(username: "ml2735")
         navigationController?.pushViewController(vc, animated: true)
     }

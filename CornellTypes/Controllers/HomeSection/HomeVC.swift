@@ -17,6 +17,7 @@ class HomeVC: UIViewController {
     private let mbtiStats = UIButton()
     private let nameLabel = UILabel()
     private let postButton = UIButton()
+    private let refreshControl = UIRefreshControl()
     private var postCollectionView: UICollectionView!
     
     // MARK: - Properties (data)
@@ -95,6 +96,10 @@ class HomeVC: UIViewController {
         postCollectionView.backgroundColor = UIColor.hack.white
         postCollectionView.showsVerticalScrollIndicator = false
         view.addSubview(postCollectionView)
+        
+        refreshControl.addTarget(self, action: #selector(getPosts), for: .valueChanged)
+        postCollectionView.refreshControl = refreshControl
+        
         NSLayoutConstraint.activate([
             postCollectionView.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: 24),
             postCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
@@ -157,6 +162,7 @@ class HomeVC: UIViewController {
             
             DispatchQueue.main.async {
                 self.postCollectionView.reloadData()
+                self.refreshControl.endRefreshing()
             }
         }
     }
@@ -182,6 +188,7 @@ extension HomeVC: UICollectionViewDataSource {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PostCollectionViewCell.reuse, for: indexPath) as? PostCollectionViewCell {
             let post = posts[indexPath.row]
             cell.configure(post: post)
+            cell.delegate = self
             return cell
         }
         return UICollectionViewCell()
@@ -198,5 +205,14 @@ extension HomeVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width
         return CGSize(width: width, height: 112)
+    }
+}
+
+// MARK: - PostCollectionViewCellDelegate
+
+extension HomeVC: PostCollectionViewCellDelegate {
+    func goToUsersProfile(user: User) {
+        let vc = UserProfileVC(user: user)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

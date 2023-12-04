@@ -11,5 +11,4 @@ struct Post: Codable {
     let id: Int
     let text: String
     let user: String
-    
 }

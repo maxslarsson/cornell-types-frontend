@@ -41,6 +41,7 @@ class QuizResultVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.hack.white
+        navigationItem.setHidesBackButton(true, animated: false)
         
         setupMyProfile()
         setupType()

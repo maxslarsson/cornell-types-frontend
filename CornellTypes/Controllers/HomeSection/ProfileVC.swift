@@ -199,6 +199,7 @@ class ProfileVC: UIViewController {
     }
     
     private func setupSchool() {
+        school.isUserInteractionEnabled = false
         school.titleLabel!.font = UIFont(name: "Fredoka-Medium", size: 22)
         school.setTitleColor(UIColor.hack.white, for: .normal)
         school.layer.cornerRadius = 16

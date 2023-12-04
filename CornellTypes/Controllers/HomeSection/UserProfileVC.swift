@@ -164,7 +164,7 @@ class UserProfileVC: UIViewController {
         type.setTitleColor(UIColor.hack.white, for: .normal)
         type.layer.cornerRadius = 16
         
-        type.addTarget(self, action: #selector(pushQuizResult), for: .touchUpInside)
+        type.addTarget(self, action: #selector(pushMbti), for: .touchUpInside)
         view.addSubview(type)
         type.translatesAutoresizingMaskIntoConstraints = false
         
@@ -177,6 +177,7 @@ class UserProfileVC: UIViewController {
     }
     
     private func setupSchool() {
+        school.isUserInteractionEnabled = false
         school.titleLabel!.font = UIFont(name: "Fredoka-Medium", size: 22)
         school.setTitleColor(UIColor.hack.white, for: .normal)
         school.layer.cornerRadius = 16
@@ -239,8 +240,12 @@ class UserProfileVC: UIViewController {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    @objc private func pushQuizResult() {
-        let vc = QuizResultVC(user: user)
-        self.navigationController?.pushViewController(vc, animated: true)
+//    @objc private func pushQuizResult() {
+//        let vc = QuizResultVC(user: user)
+//        self.navigationController?.pushViewController(vc, animated: true)
+//    }
+    @objc private func pushMbti() {
+        let vc = MbtiVC(user: user)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

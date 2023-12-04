@@ -64,7 +64,7 @@ class QuizResultVC: UIViewController {
         youAreAn.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            youAreAn.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            youAreAn.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -40),
             youAreAn.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
@@ -76,10 +76,10 @@ class QuizResultVC: UIViewController {
         type.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            type.topAnchor.constraint(equalTo: youAreAn.bottomAnchor),
+            type.topAnchor.constraint(equalTo: youAreAn.bottomAnchor, constant: 5),
             type.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            type.heightAnchor.constraint(equalToConstant: 74),
-            type.widthAnchor.constraint(equalToConstant: 218),
+            type.heightAnchor.constraint(equalToConstant: 72),
+            type.widthAnchor.constraint(equalToConstant: 198),
         ])
     }
     
@@ -202,7 +202,7 @@ class QuizResultVC: UIViewController {
         thisSoundsLikeMe.setTitle("this sounds like me!", for: .normal)
         thisSoundsLikeMe.titleLabel!.font = UIFont(name: "Fredoka-Medium", size: 22)
         thisSoundsLikeMe.setTitleColor(UIColor.hack.white, for: .normal)
-        thisSoundsLikeMe.setBackgroundImage(UIImage(named: "purplerect"), for: .normal)
+        thisSoundsLikeMe.setBackgroundImage(UIImage(named: "bluerect"), for: .normal)
         thisSoundsLikeMe.layer.cornerRadius = 16
         thisSoundsLikeMe.addTarget(self, action: #selector(pushHome), for: .touchUpInside)
         

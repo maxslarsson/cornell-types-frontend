@@ -26,6 +26,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.hack.white
+        self.navigationItem.hidesBackButton = true
 
         setupLogo()
         setupSubtitle()
@@ -106,7 +107,8 @@ class ViewController: UIViewController {
     }
     
     @objc private func pushSignup() {
-        let vc = SignupVC()
+       // let vc = SignupVC()
+        let vc = VerificationVC(username: "alvaro12")
 //        let vc = VerificationVC(username: "ml2735")
         navigationController?.pushViewController(vc, animated: true)
     }

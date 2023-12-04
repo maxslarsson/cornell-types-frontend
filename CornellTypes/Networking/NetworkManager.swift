@@ -164,6 +164,25 @@ class NetworkManager {
             }
     }
     
+    func updateBio(user: User, text: String, completion: @escaping () -> Void) {
+        let endpoint = "\(baseUrl)/api/users/\(user.username)/bio/"
+        
+        let parameters: Parameters = [
+            "text": text
+        ]
+        
+        AF.request(endpoint, method: .post, parameters: parameters, encoding: JSONEncoding.default)
+            .validate()
+            .response { response in
+                switch response.result {
+                case .success(_):
+                    completion()
+                case .failure(let error):
+                    print("Error in NetworkManager.updateBio`: \(error.localizedDescription)")
+                }
+            }
+    }
+    
     func createPost(user: User, text: String, completion: @escaping () -> Void) {
         let endpoint = "\(baseUrl)/api/users/\(user.username)/posts/"
         

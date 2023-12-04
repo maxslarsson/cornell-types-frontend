@@ -53,10 +53,59 @@ class UserProfileVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func updateUI() {
+        
+        NetworkManager.shared.getUserByUsername(username: user.username) { [weak self] user in
+            guard let self = self else { return }
+            self.otherProfile.text = "\(user.username) profile"
+            self.bear.image = UIImage(named: "\(user.personality.lowercased())bear")
+            self.type.setTitle(user.personality, for: .normal)
+            self.bio.text = user.bio
+            
+            switch user.personality {
+            case "INFJ", "INFP", "ENFJ", "ENFP":
+                type.setBackgroundImage(UIImage(named: "greenrect"), for: .normal)
+                type.setTitle(user.personality, for: .normal)
+            case "INTJ", "INTP", "ENTJ", "ENTP":
+                type.setBackgroundImage(UIImage(named: "purpleuserrect"), for: .normal)
+            case "ISTP", "ISFP", "ESTP", "ESFP":
+                type.setBackgroundImage(UIImage(named: "yellowrect"), for: .normal)
+            case "ISTJ", "ISFJ", "ESTJ", "ESFJ":
+                type.setBackgroundImage(UIImage(named: "bluerect"), for: .normal)
+            default:
+                print(user.personality)
+            }
+            
+            switch user.school {
+            case "cals":
+                school.setBackgroundImage(UIImage(named: "greenrect"), for: .normal)
+                school.setTitle("cals", for: .normal)
+            case "aap":
+                school.setBackgroundImage(UIImage(named: "bluerect"), for: .normal)
+                school.setTitle("aap", for: .normal)
+            case "a&s":
+                school.setBackgroundImage(UIImage(named: "redrect"), for: .normal)
+                school.setTitle("cas", for: .normal)
+            case "engineering":
+                school.setBackgroundImage(UIImage(named: "purplerect"), for: .normal)
+                school.setTitle("engineering", for: .normal)
+            case "ilr":
+                school.setBackgroundImage(UIImage(named: "grayrect"), for: .normal)
+                school.setTitle("ilr", for: .normal)
+            case "hotel/dyson":
+                school.setBackgroundImage(UIImage(named: "pinkrect"), for: .normal)
+                school.setTitle("hotel/dyson", for: .normal)
+            default:
+                school.setBackgroundImage(UIImage(named: "tanrect"), for: .normal)
+                school.setTitle("hum ec", for: .normal)
+            }
+        }
+    }
+
+    
     // MARK: - Views
     
     private func setupOtherProfile() {
-        otherProfile.text = "\(user.username)'s profile"
         otherProfile.textColor = UIColor.hack.red
         otherProfile.font = UIFont(name: "Fredoka-Regular", size: 28.48)
         
@@ -64,7 +113,7 @@ class UserProfileVC: UIViewController {
         otherProfile.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            otherProfile.topAnchor.constraint(equalTo: view.topAnchor, constant: 57),
+            otherProfile.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: -40),
             otherProfile.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
@@ -76,7 +125,7 @@ class UserProfileVC: UIViewController {
         tape.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            tape.topAnchor.constraint(equalTo: view.topAnchor, constant: 110),
+            tape.topAnchor.constraint(equalTo: otherProfile.bottomAnchor, constant: 32),
             tape.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             tape.widthAnchor.constraint(equalToConstant: 134),
             tape.heightAnchor.constraint(equalToConstant: 26)
@@ -91,7 +140,7 @@ class UserProfileVC: UIViewController {
         square.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            square.topAnchor.constraint(equalTo: view.topAnchor, constant: 95),
+            square.topAnchor.constraint(equalTo: otherProfile.bottomAnchor, constant: 45),
             square.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             square.widthAnchor.constraint(equalToConstant: 259),
             square.heightAnchor.constraint(equalToConstant: 228)
@@ -100,13 +149,11 @@ class UserProfileVC: UIViewController {
     }
     
     private func setupBear() {
-        bear.image = UIImage(named: ("\(personality)bear").lowercased())
-        
         view.addSubview(bear)
         bear.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            bear.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            bear.topAnchor.constraint(equalTo: otherProfile.bottomAnchor, constant: 50),
             bear.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             bear.widthAnchor.constraint(equalToConstant: 208.87),
             bear.heightAnchor.constraint(equalToConstant: 223)
@@ -114,29 +161,16 @@ class UserProfileVC: UIViewController {
     }
     
     private func setupType() {
-        type.setTitle(personality, for: .normal)
         type.titleLabel!.font = UIFont(name: "Fredoka-Medium", size: 22)
         type.setTitleColor(UIColor.hack.white, for: .normal)
         type.layer.cornerRadius = 16
         
-        switch personality {
-        case "INFJ", "INFP", "ENFJ", "ENFP":
-            type.setBackgroundImage(UIImage(named: "greenrect"), for: .normal)
-        case "INTJ", "INTP", "ENTJ", "ENTP":
-            type.setBackgroundImage(UIImage(named: "purplerect"), for: .normal)
-        case "ISTP", "ISFP", "ESTP", "ESFP":
-            type.setBackgroundImage(UIImage(named: "yellowrect"), for: .normal)
-        case "ISTJ", "ISFJ", "ESTJ", "ESFJ":
-            type.setBackgroundImage(UIImage(named: "bluerect"), for: .normal)
-        default:
-            print(personality)
-        }
         type.addTarget(self, action: #selector(pushQuizResult), for: .touchUpInside)
         view.addSubview(type)
         type.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            type.topAnchor.constraint(equalTo: view.topAnchor, constant: 355),
+            type.topAnchor.constraint(equalTo: otherProfile.bottomAnchor, constant: 305),
             type.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 68),
             type.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -74),
             type.heightAnchor.constraint(equalToConstant: 50)
@@ -148,35 +182,11 @@ class UserProfileVC: UIViewController {
         school.setTitleColor(UIColor.hack.white, for: .normal)
         school.layer.cornerRadius = 16
         
-        switch user.school {
-        case "College of Agriculture and Life Sciences":
-            school.setBackgroundImage(UIImage(named: "greenrect"), for: .normal)
-            school.setTitle("cals", for: .normal)
-        case "College of Architecture, Art, and Planning":
-            school.setBackgroundImage(UIImage(named: "bluerect"), for: .normal)
-            school.setTitle("aap", for: .normal)
-        case "College of Arts and Sciences":
-            school.setBackgroundImage(UIImage(named: "redrect"), for: .normal)
-            school.setTitle("cas", for: .normal)
-        case "College of Engineering":
-            school.setBackgroundImage(UIImage(named: "purplerect"), for: .normal)
-            school.setTitle("engineering", for: .normal)
-        case "School of Industrial and Labor Relations":
-            school.setBackgroundImage(UIImage(named: "grayrect"), for: .normal)
-            school.setTitle("ilr", for: .normal)
-        case "Cornell SC Johnson College of Business", "School of Hotel Administration":
-            school.setBackgroundImage(UIImage(named: "pinkrect"), for: .normal)
-            school.setTitle("hotel/dyson", for: .normal)
-        default:
-            school.setBackgroundImage(UIImage(named: "tanrect"), for: .normal)
-            school.setTitle("hum ec", for: .normal)
-        }
-        
         view.addSubview(school)
         school.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            school.topAnchor.constraint(equalTo: view.topAnchor, constant: 423),
+            school.topAnchor.constraint(equalTo: otherProfile.bottomAnchor, constant: 373),
             school.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 68),
             school.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -74),
             school.heightAnchor.constraint(equalToConstant: 50)
@@ -184,7 +194,7 @@ class UserProfileVC: UIViewController {
     }
     
     private func setupBioLabel() {
-        bioLabel.text = "Bio:"
+        bioLabel.text = "Bio"
         bioLabel.textColor = UIColor.hack.red
         bioLabel.font = UIFont(name: "Fredoka-Medium", size: 22)
         bioLabel.numberOfLines = 0
@@ -193,23 +203,21 @@ class UserProfileVC: UIViewController {
         bioLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            bioLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 536),
-            bioLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 68)
+            bioLabel.topAnchor.constraint(equalTo: otherProfile.bottomAnchor, constant: 383),
+            bioLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
     
     private func setupBio() {
-        //bio.text = user.bio
-        bio.text = "lorem ipsum"
         bio.textColor = UIColor.hack.red
-        bio.font = UIFont(name: "Fredoka-Medium", size: 22)
+        bio.font = UIFont(name: "Fredoka-Regular", size: 22)
         bio.numberOfLines = 0
         
         view.addSubview(bio)
         bio.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            bio.topAnchor.constraint(equalTo: view.topAnchor, constant: 618),
+            bio.topAnchor.constraint(equalTo: otherProfile.bottomAnchor, constant: 390),
             bio.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 61),
             bio.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -71)
         ])

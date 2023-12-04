@@ -40,6 +40,7 @@ class MbtiVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.hack.white
         
+        updateUI()
         setupType()
         setupSquare()
         setupBear()
@@ -47,6 +48,17 @@ class MbtiVC: UIViewController {
         setupDesc()
         setupBackButton()
     }
+    
+    func updateUI() {
+        
+        NetworkManager.shared.getUserByUsername(username: user.username) { [weak self] user in
+            guard let self = self else { return }
+            self.bear.image = UIImage(named: "\(user.personality.lowercased())bear")
+            self.type.image = UIImage(named: user.personality.lowercased())
+            
+        }
+    }
+    
     
     // MARK: - Views
     
@@ -59,8 +71,8 @@ class MbtiVC: UIViewController {
         NSLayoutConstraint.activate([
             type.topAnchor.constraint(equalTo: view.topAnchor, constant: 62),
             type.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 89),
-            type.widthAnchor.constraint(equalToConstant: 218),
-            type.heightAnchor.constraint(equalToConstant: 74)
+            type.widthAnchor.constraint(equalToConstant: 198),
+            type.heightAnchor.constraint(equalToConstant: 72)
         ])
     }
     

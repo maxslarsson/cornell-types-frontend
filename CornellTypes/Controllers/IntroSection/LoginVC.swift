@@ -18,10 +18,6 @@ class LoginVC: UIViewController {
     private let loginButton = UIButton()
     private let backButton = UIButton()
     
-    // MARK: - Properties (data)
-    
-    private var user: User!
-    
     // MARK: - viewDidLoad
     
     override func viewDidLoad() {
@@ -159,23 +155,13 @@ class LoginVC: UIViewController {
     }
     
     @objc private func pushHome() {
-        user = User(
-            email: "",
-            username: username.text ?? "",
-            password: password.text ?? "",
-            school: ""
-        )
+        guard let username = username.text else { return }
 
-        NetworkManager.shared.loginUser(user: user) { [weak self] loggedInUser in
+        NetworkManager.shared.getUserByUsername(username: username) { [weak self] user in
             guard let self = self else { return }
-            print("User logged in successfully: \(loggedInUser)")
 
-            DispatchQueue.main.async {
-                let newUser = User(email: loggedInUser.email, username: loggedInUser.username, password: loggedInUser.password, school: loggedInUser.school)
-                let vc = HomeVC(user: loggedInUser)
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
-
+            let vc = HomeVC(user: user)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     

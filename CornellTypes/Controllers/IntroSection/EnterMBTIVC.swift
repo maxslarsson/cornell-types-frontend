@@ -26,8 +26,8 @@ class EnterMBTIVC: UIViewController {
     // MARK: - init
     
     init(user: User) {
-        self.user = user
         super.init(nibName: nil, bundle: nil)
+        self.user = user
     }
         
     required init?(coder: NSCoder) {
@@ -172,15 +172,13 @@ class EnterMBTIVC: UIViewController {
     
     
     @objc private func pushResult() {
+        guard let type = mbtiText.text else { return }
         
-        NetworkManager.shared.enterMBTI(type: mbtiText.text!, user: user) { [weak self] personalityType in
+        NetworkManager.shared.enterMBTI(user: user, type: type) { [weak self] personalityType in
             guard let self = self else { return }
-            print("Successfully assigned \(personalityType)")
             
-            DispatchQueue.main.async {
-                let vc = QuizResultVC(user: self.user)
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
+            let vc = QuizResultVC(user: self.user)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     

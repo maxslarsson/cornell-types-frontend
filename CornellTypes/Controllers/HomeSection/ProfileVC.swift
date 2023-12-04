@@ -39,6 +39,8 @@ class ProfileVC: UIViewController {
         setupTape()
         setupType()
         setupSchool()
+        setupName()
+        setupBio()
         setupLogOut()
         setupBackButton()
     }
@@ -46,8 +48,8 @@ class ProfileVC: UIViewController {
     // MARK: - init
     
     init(user: User) {
-        self.user = user
         super.init(nibName: nil, bundle: nil)
+        self.user = user
     }
         
     required init?(coder: NSCoder) {
@@ -65,7 +67,7 @@ class ProfileVC: UIViewController {
         myProfile.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            myProfile.topAnchor.constraint(equalTo: view.topAnchor, constant: 16),
+            myProfile.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             myProfile.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
@@ -77,8 +79,8 @@ class ProfileVC: UIViewController {
         tape.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            tape.topAnchor.constraint(equalTo: view.topAnchor, constant: 82),
-            tape.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 108),
+            tape.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 82),
+            tape.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             tape.widthAnchor.constraint(equalToConstant: 134),
             tape.heightAnchor.constraint(equalToConstant: 26)
         ])
@@ -92,8 +94,8 @@ class ProfileVC: UIViewController {
         square.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            square.topAnchor.constraint(equalTo: view.topAnchor, constant: 95),
-            square.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 45),
+            square.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 95),
+            square.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             square.widthAnchor.constraint(equalToConstant: 259),
             square.heightAnchor.constraint(equalToConstant: 228)
         ])
@@ -107,8 +109,8 @@ class ProfileVC: UIViewController {
         bear.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            bear.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
-            bear.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 73),
+            bear.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
+            bear.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             bear.widthAnchor.constraint(equalToConstant: 208.87),
             bear.heightAnchor.constraint(equalToConstant: 223)
         ])
@@ -127,7 +129,7 @@ class ProfileVC: UIViewController {
         logOut.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            logOut.topAnchor.constraint(equalTo: view.topAnchor, constant: 745),
+            logOut.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 745),
             logOut.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 66),
             logOut.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -66),
             logOut.heightAnchor.constraint(equalToConstant: 50)
@@ -158,9 +160,9 @@ class ProfileVC: UIViewController {
         type.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            type.topAnchor.constraint(equalTo: view.topAnchor, constant: 355),
-            type.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 58),
-            type.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -74),
+            type.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 355),
+            type.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 68),
+            type.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -68),
             type.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
@@ -198,9 +200,9 @@ class ProfileVC: UIViewController {
         school.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            school.topAnchor.constraint(equalTo: view.topAnchor, constant: 423),
-            school.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 58),
-            school.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -74),
+            school.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 423),
+            school.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 68),
+            school.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -68),
             school.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
@@ -258,9 +260,9 @@ class ProfileVC: UIViewController {
         bio.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            bio.topAnchor.constraint(equalTo: view.topAnchor, constant: 581),
-            bio.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 61),
-            bio.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -71),
+            bio.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 581),
+            bio.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 66),
+            bio.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -66),
             bio.heightAnchor.constraint(equalToConstant: 123)
         ])
     }
@@ -278,15 +280,8 @@ class ProfileVC: UIViewController {
     }
 
     @objc private func pushVC() {
-        NetworkManager.shared.logoutUser(user: user) { [weak self] loggedOutUser in
-            guard let self = self else { return }
-            print("Successfully logged out \(loggedOutUser.username)")
-            
-            DispatchQueue.main.async {
-                let vc = ViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
-        }
+        let vc = ViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc private func pushQuizResult() {

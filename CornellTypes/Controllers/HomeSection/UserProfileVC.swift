@@ -64,7 +64,7 @@ class UserProfileVC: UIViewController {
         otherProfile.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            otherProfile.topAnchor.constraint(equalTo: view.topAnchor, constant: 17),
+            otherProfile.topAnchor.constraint(equalTo: view.topAnchor, constant: 57),
             otherProfile.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
@@ -76,8 +76,8 @@ class UserProfileVC: UIViewController {
         tape.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            tape.topAnchor.constraint(equalTo: view.topAnchor, constant: 82),
-            tape.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 108),
+            tape.topAnchor.constraint(equalTo: view.topAnchor, constant: 110),
+            tape.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             tape.widthAnchor.constraint(equalToConstant: 134),
             tape.heightAnchor.constraint(equalToConstant: 26)
         ])
@@ -92,7 +92,7 @@ class UserProfileVC: UIViewController {
         
         NSLayoutConstraint.activate([
             square.topAnchor.constraint(equalTo: view.topAnchor, constant: 95),
-            square.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 45),
+            square.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             square.widthAnchor.constraint(equalToConstant: 259),
             square.heightAnchor.constraint(equalToConstant: 228)
         ])
@@ -107,7 +107,7 @@ class UserProfileVC: UIViewController {
         
         NSLayoutConstraint.activate([
             bear.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
-            bear.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 73),
+            bear.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             bear.widthAnchor.constraint(equalToConstant: 208.87),
             bear.heightAnchor.constraint(equalToConstant: 223)
         ])
@@ -137,7 +137,7 @@ class UserProfileVC: UIViewController {
         
         NSLayoutConstraint.activate([
             type.topAnchor.constraint(equalTo: view.topAnchor, constant: 355),
-            type.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 58),
+            type.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 68),
             type.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -74),
             type.heightAnchor.constraint(equalToConstant: 50)
         ])
@@ -177,7 +177,7 @@ class UserProfileVC: UIViewController {
         
         NSLayoutConstraint.activate([
             school.topAnchor.constraint(equalTo: view.topAnchor, constant: 423),
-            school.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 58),
+            school.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 68),
             school.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -74),
             school.heightAnchor.constraint(equalToConstant: 50)
         ])
@@ -194,12 +194,13 @@ class UserProfileVC: UIViewController {
         
         NSLayoutConstraint.activate([
             bioLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 536),
-            bioLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 72)
+            bioLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 68)
         ])
     }
     
     private func setupBio() {
         //bio.text = user.bio
+        bio.text = "lorem ipsum"
         bio.textColor = UIColor.hack.red
         bio.font = UIFont(name: "Fredoka-Medium", size: 22)
         bio.numberOfLines = 0

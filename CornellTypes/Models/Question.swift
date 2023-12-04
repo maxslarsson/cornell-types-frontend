@@ -18,4 +18,5 @@ struct QuestionOption: Codable {
     let id: Int
     let questionId: Int
     let optionText: String
+    let score: String
 }

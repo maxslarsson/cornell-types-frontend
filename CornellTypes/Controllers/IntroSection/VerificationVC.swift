@@ -21,13 +21,13 @@ class VerificationVC: UIViewController {
     
     // MARK: - Properties (data)
     
-    private var user: User!
+    private var username: String!
     
     // MARK: - init
     
-    init(user: User) {
-        self.user = user
+    init(username: String) {
         super.init(nibName: nil, bundle: nil)
+        self.username = username
     }
         
     required init?(coder: NSCoder) {
@@ -74,7 +74,7 @@ class VerificationVC: UIViewController {
         NSLayoutConstraint.activate([
             code.topAnchor.constraint(equalTo: enterYourVerification.bottomAnchor, constant: 10),
             code.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 83.85),
-            code.widthAnchor.constraint(equalToConstant: 232),
+            code.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -83.85),
             code.heightAnchor.constraint(equalToConstant: 79)
         ])
     }
@@ -138,7 +138,6 @@ class VerificationVC: UIViewController {
             submit.topAnchor.constraint(equalTo: typeHere.bottomAnchor, constant: 22),
             submit.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 108),
             submit.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -108),
-            submit.widthAnchor.constraint(equalToConstant: 159),
             submit.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
@@ -148,26 +147,25 @@ class VerificationVC: UIViewController {
         backButton.addTarget(self, action: #selector(popVC), for: .touchUpInside)
         
         backButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([backButton.widthAnchor.constraint(equalToConstant: 14),
-        backButton.heightAnchor.constraint(equalToConstant: 24)])
+        NSLayoutConstraint.activate([
+            backButton.widthAnchor.constraint(equalToConstant: 14),
+            backButton.heightAnchor.constraint(equalToConstant: 24)
+        ])
         
         let customBackButton = UIBarButtonItem(customView: backButton)
         navigationItem.leftBarButtonItem = customBackButton
     }
     
     @objc private func pushWelcome() {
+        guard let code = typeHere.text else { return }
         
-        let verificationCode: String = typeHere.text ?? ""
-        
-        NetworkManager.shared.verifyUser(code: verificationCode) { [weak self] result in
-            guard let self = self else { return }
-            print("\(result)")
-            
-            DispatchQueue.main.async {
-                let vc = WelcomeVC(user: self.user)
+        NetworkManager.shared.verifyUser(code: code) {
+            NetworkManager.shared.getUserByUsername(username: self.username) { [weak self] user in
+                guard let self = self else { return }
+                let vc = WelcomeVC(user: user)
+//                let vc = QuizResultVC(user: user)
                 self.navigationController?.pushViewController(vc, animated: true)
             }
-            
         }
     }
     

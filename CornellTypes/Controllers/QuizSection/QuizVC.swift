@@ -18,6 +18,7 @@ class QuizVC: UIViewController {
     
     // MARK: - Properties (data)
     
+    private var user: User!
     private var question: Question?
     private static let buttonColors = [
         UIColor.hack.purple,
@@ -30,13 +31,13 @@ class QuizVC: UIViewController {
         UIImage(named: "beartwo"),
         UIImage(named: "bearsneaky"),
     ]
-    private var user: User!
     
-    // MARK: init
+    // MARK: - init
     
     init(questionId: Int, user: User) {
         super.init(nibName: nil, bundle: nil)
         
+        self.user = user
         NetworkManager.shared.getQuestion(questionId: questionId) { [weak self] question in
             guard let self = self else { return }
             self.question = question
@@ -80,7 +81,8 @@ class QuizVC: UIViewController {
     
     private func setupBearImageView() {
         bearImageView.translatesAutoresizingMaskIntoConstraints = false
-        bearImageView.image = QuizVC.bearImages[question?.questionNo ?? 0 % QuizVC.bearImages.count]
+        let index = (question?.questionNo ?? 0) % QuizVC.bearImages.count
+        bearImageView.image = QuizVC.bearImages[index]
         bearImageView.contentMode = .scaleAspectFit
         view.addSubview(bearImageView)
         NSLayoutConstraint.activate([
@@ -131,11 +133,22 @@ class QuizVC: UIViewController {
 
 extension QuizVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // Safe because a cell is only rendered of options exists (see numberOfItemsInSection below)
+        // Safe because a cell is only rendered if options exists (see numberOfItemsInSection below)
         let nextQuestionId = question!.id + 1
         
-        let vc = nextQuestionId == 37 ? QuizResultVC(user: user) : QuizVC(questionId: nextQuestionId, user: user)
-        navigationController?.pushViewController(vc, animated: true)
+        let score = question!.options[indexPath.row].score
+        NetworkManager.shared.submitSpecificResponse(user: user, questionId: question!.id, score: score) {
+            if nextQuestionId == 37 {
+                NetworkManager.shared.getResults(user: self.user) { [weak self] user in
+                    guard let self = self else { return }
+                    let vc = QuizResultVC(user: self.user)
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            } else {
+                let vc = QuizVC(questionId: nextQuestionId, user: self.user)
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
     }
 }
 

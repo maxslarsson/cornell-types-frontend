@@ -27,8 +27,8 @@ class WelcomeVC: UIViewController {
     // MARK: - init
     
     init(user: User) {
-        self.user = user
         super.init(nibName: nil, bundle: nil)
+        self.user = user
     }
         
     required init?(coder: NSCoder) {
@@ -177,7 +177,7 @@ class WelcomeVC: UIViewController {
     }
     
     @objc private func pushWhatsMBTI() {
-        let vc  = WhatsMBTIVC()
+        let vc  = WhatsMBTIVC(user: user)
         navigationController?.pushViewController(vc, animated: true)
     }
     

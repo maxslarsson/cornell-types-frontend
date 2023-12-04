@@ -20,12 +20,12 @@ class MbtiVC: UIViewController {
     
     // MARK: - Properties (data)
     
-    private var user: OtherUser!
+    private var user: User!
     private var personality: String!
     
     // MARK: - init
     
-    init(user: OtherUser) {
+    init(user: User) {
         self.user = user
         super.init(nibName: nil, bundle: nil)
     }

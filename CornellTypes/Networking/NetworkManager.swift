@@ -26,88 +26,59 @@ class NetworkManager {
     
     // MARK: - Requests
     
-    func registerUser(user: User, completion: @escaping (User) -> Void) {
-        let endpoint = "\(baseUrl)/api/users/register/"
+    func getUserByUsername(username: String, completion: @escaping (User) -> Void) {
+        let endpoint = "\(baseUrl)/api/users/\(username)/"
         
-        let parameters: Parameters = [
-            "email": user.email,
-            "username": user.username,
-            "password": user.password,
-            "school": user.school
-        ]
-        
-        AF.request(endpoint, method: .post, parameters: parameters, encoding: JSONEncoding.default)
+        AF.request(endpoint, method: .get)
             .validate()
             .responseDecodable(of: User.self, decoder: decoder) { response in
                 switch response.result {
                 case .success(let user):
-                    print("Successfully registered user")
                     completion(user)
+                case .failure(let error):
+                    print("Error in NetworkManager.getUserByUsername: \(error.localizedDescription)")
+                }
+            }
+    }
+    
+    func registerUser(email: String, username: String, password: String, school: String, completion: @escaping () -> Void) {
+        let endpoint = "\(baseUrl)/api/users/register/"
+        
+        let parameters: Parameters = [
+            "email": email,
+            "username": username,
+            "password": password,
+            "school": school
+        ]
+        
+        AF.request(endpoint, method: .post, parameters: parameters, encoding: JSONEncoding.default)
+            .validate()
+            .response { response in
+                switch response.result {
+                case .success(_):
+                    completion()
                 case .failure(let error):
                     print("Error in NetworkManager.registerUser: \(error.localizedDescription)")
                 }
             }
     }
     
-    func loginUser(user: User, completion: @escaping (User) -> Void) {
-        let endpoint = "\(baseUrl)/api/users/login/"
-        
-        let parameters: Parameters = [
-            "username": user.username,
-            "password": user.password
-        ]
-        
-        AF.request(endpoint, method: .post, parameters: parameters, encoding: JSONEncoding.default)
-            .validate()
-            .responseDecodable(of: User.self, decoder: decoder) { response in
-                switch response.result {
-                case .success(let user):
-                    print("Successfully logged in user")
-                    completion(user)
-                case .failure(let error):
-                    print("Error in NetworkManager.loginUser: \(error.localizedDescription)")
-                }
-            }
-    }
-    
-    func verifyUser(code: String, completion: @escaping (String) -> Void) {
+    func verifyUser(code: String, completion: @escaping () -> Void) {
         let endpoint = "\(baseUrl)/api/users/verify/\(code)/"
         
         AF.request(endpoint, method: .get)
             .validate()
-            .responseDecodable(of: String.self, decoder: decoder) { response in
+            .response { response in
                 switch response.result {
-                case .success(let code):
-                    print("Successfully verified user")
-                    completion(code)
+                case .success(_):
+                    completion()
                 case .failure(let error):
                     print("Error in NetworkManager.verifyUser: \(error.localizedDescription)")
                 }
             }
-        
     }
     
-    func logoutUser(user: User,completion: @escaping (User) -> Void) {
-        let endpoint = "\(baseUrl)/api/users/logout/"
-        
-        let parameters: Parameters = [
-            "Authorization": user
-        ]
-        
-        AF.request(endpoint, method: .post, parameters: parameters, encoding: JSONEncoding.default)
-            .validate()
-            .responseDecodable(of: User.self, decoder: decoder) { response in
-                switch response.result {
-                case .success(let logout):
-                    print("Successfully logged out user")
-                    completion(logout)
-                case .failure(let error):
-                    print("Error in NetworkManager.logoutUser: \(error.localizedDescription)")
-                }
-            }
-    }
-    
-    func enterMBTI(type: String, user: User, completion: @escaping (String) -> Void) {
+    func enterMBTI(user: User, type: String, completion: @escaping (String) -> Void) {
         let endpoint = "\(baseUrl)/api/users/\(user.username)/personality/"
         
         let parameters: Parameters = [
@@ -155,6 +126,59 @@ class NetworkManager {
                 case .failure(let error):
                     print("Error in NetworkManager.getQuestion: \(error.localizedDescription)")
                     completion(nil)
+                }
+            }
+    }
+    
+    func submitSpecificResponse(user: User, questionId: Int, score: String, completion: @escaping () -> Void) {
+        let endpoint = "\(baseUrl)/api/surveys/\(user.username)/\(questionId)/"
+        
+        let parameters: Parameters = [
+            "score": score
+        ]
+        
+        AF.request(endpoint, method: .post, parameters: parameters, encoding: JSONEncoding.default)
+            .validate()
+            .response { response in
+                switch response.result {
+                case .success(_):
+                    completion()
+                case .failure(let error):
+                    print("Error in NetworkManager.submitSpecificResponse: \(error.localizedDescription)")
+                }
+            }
+    }
+    
+    func getResults(user: User, completion: @escaping (User) -> Void) {
+        let endpoint = "\(baseUrl)/api/surveys/\(user.username)/results"
+        
+        AF.request(endpoint, method: .get)
+            .validate()
+            .responseDecodable(of: User.self, decoder: decoder) { response in
+                switch response.result {
+                case .success(let user):
+                    completion(user)
+                case .failure(let error):
+                    print("Error in NetworkManager.getUserByUsername: \(error.localizedDescription)")
+                }
+            }
+    }
+    
+    func createPost(user: User, text: String, completion: @escaping () -> Void) {
+        let endpoint = "\(baseUrl)/api/users/\(user.username)/posts/"
+        
+        let parameters: Parameters = [
+            "text": text
+        ]
+        
+        AF.request(endpoint, method: .post, parameters: parameters, encoding: JSONEncoding.default)
+            .validate()
+            .response { response in
+                switch response.result {
+                case .success(_):
+                    completion()
+                case .failure(let error):
+                    print("Error in NetworkManager.createPost: \(error.localizedDescription)")
                 }
             }
     }

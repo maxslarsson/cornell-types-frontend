@@ -35,8 +35,8 @@ class WhatsMBTIVC: UIViewController {
     // MARK: - init
     
     init(user: User) {
-        self.user = user
         super.init(nibName: nil, bundle: nil)
+        self.user = user
     }
         
     required init?(coder: NSCoder) {

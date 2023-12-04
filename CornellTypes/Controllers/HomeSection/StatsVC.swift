@@ -7,7 +7,7 @@
 
 import UIKit
 
-class StatsVC: ViewController {
+class StatsVC: UIViewController {
     
     // MARK: - Properties (views)
     
@@ -57,7 +57,7 @@ class StatsVC: ViewController {
         mbtiStats.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            mbtiStats.topAnchor.constraint(equalTo: view.topAnchor, constant: 16),
+            mbtiStats.topAnchor.constraint(equalTo: view.topAnchor, constant: 57),
             mbtiStats.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
@@ -69,10 +69,10 @@ class StatsVC: ViewController {
         stat1.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            stat1.topAnchor.constraint(equalTo: view.topAnchor, constant: 87),
+            stat1.topAnchor.constraint(equalTo: view.topAnchor, constant: 117),
             stat1.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 34),
-            stat1.widthAnchor.constraint(equalToConstant: 60),
-            stat1.heightAnchor.constraint(equalToConstant: 48)
+            stat1.widthAnchor.constraint(equalToConstant: 80),
+            stat1.heightAnchor.constraint(equalToConstant: 35)
         ])
     }
     
@@ -83,10 +83,10 @@ class StatsVC: ViewController {
         stat2.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            stat2.topAnchor.constraint(equalTo: view.topAnchor, constant: 166),
+            stat2.topAnchor.constraint(equalTo: view.topAnchor, constant: 186),
             stat2.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 34),
-            stat2.widthAnchor.constraint(equalToConstant: 60),
-            stat2.heightAnchor.constraint(equalToConstant: 48)
+            stat2.widthAnchor.constraint(equalToConstant: 80),
+            stat2.heightAnchor.constraint(equalToConstant: 35)
         ])
     }
     
@@ -97,10 +97,10 @@ class StatsVC: ViewController {
         stat3.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            stat3.topAnchor.constraint(equalTo: view.topAnchor, constant: 242),
+            stat3.topAnchor.constraint(equalTo: view.topAnchor, constant: 262),
             stat3.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 34),
-            stat3.widthAnchor.constraint(equalToConstant: 60),
-            stat3.heightAnchor.constraint(equalToConstant: 48)
+            stat3.widthAnchor.constraint(equalToConstant: 80),
+            stat3.heightAnchor.constraint(equalToConstant: 35)
         ])
     }
     
@@ -111,10 +111,10 @@ class StatsVC: ViewController {
         stat4.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            stat4.topAnchor.constraint(equalTo: view.topAnchor, constant: 317),
+            stat4.topAnchor.constraint(equalTo: view.topAnchor, constant: 333),
             stat4.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 34),
-            stat4.widthAnchor.constraint(equalToConstant: 48),
-            stat4.heightAnchor.constraint(equalToConstant: 48)
+            stat4.widthAnchor.constraint(equalToConstant: 65),
+            stat4.heightAnchor.constraint(equalToConstant: 37)
         ])
     }
     
@@ -125,15 +125,15 @@ class StatsVC: ViewController {
         stat5.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            stat5.topAnchor.constraint(equalTo: view.topAnchor, constant: 394),
+            stat5.topAnchor.constraint(equalTo: view.topAnchor, constant: 410),
             stat5.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 34),
-            stat5.widthAnchor.constraint(equalToConstant: 60),
-            stat5.heightAnchor.constraint(equalToConstant: 48)
+            stat5.widthAnchor.constraint(equalToConstant: 80),
+            stat5.heightAnchor.constraint(equalToConstant: 35)
         ])
     }
     
     private func setupStat1Label() {
-        stat1Label.text = ""
+        stat1Label.text = "of aap students are ENFPs"
         stat1Label.textColor = UIColor.hack.red
         stat1Label.font = UIFont(name: "Fredoka-Regular", size: 22)
         stat1Label.numberOfLines = 0
@@ -142,15 +142,15 @@ class StatsVC: ViewController {
         stat1Label.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            stat1Label.topAnchor.constraint(equalTo: view.topAnchor, constant: 96),
-            stat1Label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 122),
+            stat1Label.topAnchor.constraint(equalTo: view.topAnchor, constant: 106),
+            stat1Label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 142),
             stat1Label.widthAnchor.constraint(equalToConstant: 233),
             stat1Label.heightAnchor.constraint(equalToConstant: 54)
         ])
     }
     
     private func setupStat2Label() {
-        stat2Label.text = ""
+        stat2Label.text = "of cals students are ESFJs"
         stat2Label.textColor = UIColor.hack.red
         stat2Label.font = UIFont(name: "Fredoka-Regular", size: 22)
         stat2Label.numberOfLines = 0
@@ -159,15 +159,15 @@ class StatsVC: ViewController {
         stat2Label.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            stat2Label.topAnchor.constraint(equalTo: view.topAnchor, constant: 171),
-            stat2Label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 122),
+            stat2Label.topAnchor.constraint(equalTo: view.topAnchor, constant: 181),
+            stat2Label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 142),
             stat2Label.widthAnchor.constraint(equalToConstant: 233),
             stat2Label.heightAnchor.constraint(equalToConstant: 54)
         ])
     }
     
     private func setupStat3Label() {
-        stat3Label.text = ""
+        stat3Label.text = "of ilries are INTPs"
         stat3Label.textColor = UIColor.hack.red
         stat3Label.font = UIFont(name: "Fredoka-Regular", size: 22)
         stat3Label.numberOfLines = 0
@@ -176,15 +176,15 @@ class StatsVC: ViewController {
         stat3Label.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            stat3Label.topAnchor.constraint(equalTo: view.topAnchor, constant: 245),
-            stat3Label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 122),
+            stat3Label.topAnchor.constraint(equalTo: view.topAnchor, constant: 255),
+            stat3Label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 142),
             stat3Label.widthAnchor.constraint(equalToConstant: 233),
             stat3Label.heightAnchor.constraint(equalToConstant: 54)
         ])
     }
     
     private func setupStat4Label() {
-        stat4Label.text = ""
+        stat4Label.text = "of engineers are ENTPs"
         stat4Label.textColor = UIColor.hack.red
         stat4Label.font = UIFont(name: "Fredoka-Regular", size: 22)
         stat4Label.numberOfLines = 0
@@ -193,15 +193,15 @@ class StatsVC: ViewController {
         stat4Label.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            stat4Label.topAnchor.constraint(equalTo: view.topAnchor, constant: 316),
-            stat4Label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 122),
+            stat4Label.topAnchor.constraint(equalTo: view.topAnchor, constant: 326),
+            stat4Label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 142),
             stat4Label.widthAnchor.constraint(equalToConstant: 233),
             stat4Label.heightAnchor.constraint(equalToConstant: 54)
         ])
     }
     
     private func setupStat5Label() {
-        stat5Label.text = ""
+        stat5Label.text = "of cas students are ISFPs"
         stat5Label.textColor = UIColor.hack.red
         stat5Label.font = UIFont(name: "Fredoka-Regular", size: 22)
         stat5Label.numberOfLines = 0
@@ -210,8 +210,8 @@ class StatsVC: ViewController {
         stat5Label.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            stat5Label.topAnchor.constraint(equalTo: view.topAnchor, constant: 388),
-            stat5Label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 122),
+            stat5Label.topAnchor.constraint(equalTo: view.topAnchor, constant: 398),
+            stat5Label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 142),
             stat5Label.widthAnchor.constraint(equalToConstant: 233),
             stat5Label.heightAnchor.constraint(equalToConstant: 54)
         ])
@@ -236,8 +236,10 @@ class StatsVC: ViewController {
         backButton.addTarget(self, action: #selector(popVC), for: .touchUpInside)
         
         backButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([backButton.widthAnchor.constraint(equalToConstant: 14),
-        backButton.heightAnchor.constraint(equalToConstant: 24)])
+        NSLayoutConstraint.activate([
+            backButton.widthAnchor.constraint(equalToConstant: 14),
+            backButton.heightAnchor.constraint(equalToConstant: 24)
+        ])
         
         let customBackButton = UIBarButtonItem(customView: backButton)
         navigationItem.leftBarButtonItem = customBackButton

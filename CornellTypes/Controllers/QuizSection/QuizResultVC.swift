@@ -24,13 +24,12 @@ class QuizResultVC: UIViewController {
     // MARK: - Properties (data)
     
     private var user: User!
-    private var personality: String!
     
     // MARK: - init
     
     init(user: User) {
-        self.user = user
         super.init(nibName: nil, bundle: nil)
+        self.user = user
     }
         
     required init?(coder: NSCoder) {
@@ -64,22 +63,22 @@ class QuizResultVC: UIViewController {
         youAreAn.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            youAreAn.topAnchor.constraint(equalTo: view.topAnchor, constant: 28),
+            youAreAn.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             youAreAn.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
     
     private func setupType() {
-        type.image = UIImage(named: personality.lowercased())
+        type.image = UIImage(named: user.personality.lowercased())
         
         view.addSubview(type)
         type.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            type.topAnchor.constraint(equalTo: view.topAnchor, constant: 62),
-            type.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 89),
+            type.topAnchor.constraint(equalTo: youAreAn.bottomAnchor),
+            type.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            type.heightAnchor.constraint(equalToConstant: 74),
             type.widthAnchor.constraint(equalToConstant: 218),
-            type.heightAnchor.constraint(equalToConstant: 74)
         ])
     }
     
@@ -90,10 +89,10 @@ class QuizResultVC: UIViewController {
         tape.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            tape.topAnchor.constraint(equalTo: view.topAnchor, constant: 189),
-            tape.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 121),
+            tape.topAnchor.constraint(equalTo: type.bottomAnchor, constant: 23),
+            tape.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            tape.heightAnchor.constraint(equalToConstant: 26),
             tape.widthAnchor.constraint(equalToConstant: 134),
-            tape.heightAnchor.constraint(equalToConstant: 26)
         ])
         
     }
@@ -105,8 +104,8 @@ class QuizResultVC: UIViewController {
         square.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            square.topAnchor.constraint(equalTo: view.topAnchor, constant: 202),
-            square.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 58),
+            square.topAnchor.constraint(equalTo: type.bottomAnchor, constant: 36),
+            square.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             square.widthAnchor.constraint(equalToConstant: 259),
             square.heightAnchor.constraint(equalToConstant: 228)
         ])
@@ -114,21 +113,21 @@ class QuizResultVC: UIViewController {
     }
     
     private func setupBear() {
-        bear.image = UIImage(named: ("\(personality!)bear").lowercased())
+        bear.image = UIImage(named: "\(user.personality.lowercased())bear")
         
         view.addSubview(bear)
         bear.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            bear.topAnchor.constraint(equalTo: view.topAnchor, constant: 207),
-            bear.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 86),
+            bear.topAnchor.constraint(equalTo: square.topAnchor, constant: 5),
+            bear.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            bear.heightAnchor.constraint(equalToConstant: 223),
             bear.widthAnchor.constraint(equalToConstant: 208.87),
-            bear.heightAnchor.constraint(equalToConstant: 223)
         ])
     }
     
     private func setupDesc() {
-        switch personality {
+        switch user.personality {
             case "INFJ":
                 desc.text = "Quiet and mystical, yet very inspiring and tireless idealists."
             case "INFP":
@@ -162,7 +161,7 @@ class QuizResultVC: UIViewController {
             case "ESFJ":
                 desc.text = "Extraordinarily caring, social and popular people, always eager to help."
             default:
-                print(personality!)
+                fatalError("Unsupported personality type")
         }
         
         desc.textColor = UIColor.hack.red
@@ -174,7 +173,7 @@ class QuizResultVC: UIViewController {
         
         NSLayoutConstraint.activate([
             desc.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            desc.topAnchor.constraint(equalTo: view.topAnchor, constant: 443),
+            desc.topAnchor.constraint(equalTo: square.bottomAnchor, constant: 13),
             desc.widthAnchor.constraint(equalToConstant: 259)
         ])
     }
@@ -191,7 +190,7 @@ class QuizResultVC: UIViewController {
         retakeQuizButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            retakeQuizButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 651),
+            retakeQuizButton.topAnchor.constraint(equalTo: desc.bottomAnchor, constant: 28),
             retakeQuizButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             retakeQuizButton.widthAnchor.constraint(equalToConstant: 243),
             retakeQuizButton.heightAnchor.constraint(equalToConstant: 50)
@@ -210,7 +209,7 @@ class QuizResultVC: UIViewController {
         thisSoundsLikeMe.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            thisSoundsLikeMe.topAnchor.constraint(equalTo: view.topAnchor, constant: 728),
+            thisSoundsLikeMe.topAnchor.constraint(equalTo: retakeQuizButton.bottomAnchor, constant: 27),
             thisSoundsLikeMe.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             thisSoundsLikeMe.widthAnchor.constraint(equalToConstant: 243),
             thisSoundsLikeMe.heightAnchor.constraint(equalToConstant: 50)
@@ -223,18 +222,8 @@ class QuizResultVC: UIViewController {
     }
     
     @objc private func pushHome() {
-
-        NetworkManager.shared.loginUser(user: user) { [weak self] loggedInUser in
-            guard let self = self else { return }
-            print("User logged in successfully: \(loggedInUser)")
-
-            DispatchQueue.main.async {
-                let newUser = User(email: loggedInUser.email, username: loggedInUser.username, password: loggedInUser.password, school: loggedInUser.school)
-                let vc = HomeVC(user: loggedInUser)
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
-
-        }
+        let vc = HomeVC(user: user)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

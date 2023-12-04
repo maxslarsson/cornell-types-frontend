@@ -184,6 +184,7 @@ class SignupVC: UIViewController {
     }
     
     private func setupCollege() {
+        college.autocapitalizationType = .none
         college.layer.borderColor = UIColor.hack.red.cgColor
         college.layer.borderWidth = 2
         college.layer.cornerRadius = 11
@@ -241,22 +242,15 @@ class SignupVC: UIViewController {
     }
     
     @objc private func pushVerification() {
-        let user = User(
-            email: email.text ?? "",
-            username: username.text ?? "",
-            password: password.text ?? "",
-            school: college.text ?? ""
-        )
+        guard let email = email.text else { return }
+        guard let username = username.text else { return }
+        guard let password = password.text else { return }
+        guard let school = college.text else { return }
         
-        let vc = VerificationVC(user: user)
-        self.navigationController?.pushViewController(vc, animated: true)
         
-        NetworkManager.shared.registerUser(user: user) { [weak self] registeredUser in
-            guard let self = self else { return }
-            print("User registered successfully: \(registeredUser.username)")
-            
-            DispatchQueue.main.async {
-            }
+        NetworkManager.shared.registerUser(email: email, username: username, password: password, school: school) {
+            let vc = VerificationVC(username: username)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 

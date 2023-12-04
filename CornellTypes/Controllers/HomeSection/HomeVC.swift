@@ -12,19 +12,28 @@ class HomeVC: UIViewController {
     // MARK: - Properties (view)
     
     private let logo = UIImageView()
-    private let exploreMBTITypes = UILabel()
     private let pfp = UIButton()
     private let forwardButton = UIButton()
     private let mbtiStats = UIButton()
     private let nameLabel = UILabel()
     private let postButton = UIButton()
-    private var filterCollectionView: UICollectionView!
     private var postCollectionView: UICollectionView!
     
     // MARK: - Properties (data)
     
     private var posts: [Post] = []
     private var user: User!
+    
+    // MARK: - init
+    
+    init(user: User) {
+        super.init(nibName: nil, bundle: nil)
+        self.user = user
+    }
+        
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - viewDidLoad
     
@@ -35,20 +44,10 @@ class HomeVC: UIViewController {
         
         setupLogo()
         setupPFP()
-        setupExploreMBTITypes()
-        setupMBTIStats()
+        setupCollectionView()
         setupPostButton()
-    }
-    
-    // MARK: - init
-    
-    init(user: User) {
-        self.user = user
-        super.init(nibName: nil, bundle: nil)
-    }
-        
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        setupMBTIStats()
+        getPosts()
     }
     
     // MARK: - Set Up Views
@@ -83,17 +82,41 @@ class HomeVC: UIViewController {
         ])
     }
     
-    private func setupExploreMBTITypes() {
-        exploreMBTITypes.text = "explore mbti types"
-        exploreMBTITypes.textColor = UIColor.hack.red
-        exploreMBTITypes.font = UIFont(name: "Fredoka-Regular", size: 22)
+    private func setupCollectionView() {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .vertical
+        flowLayout.minimumLineSpacing = 28
+        postCollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        postCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        postCollectionView.register(PostCollectionViewCell.self, forCellWithReuseIdentifier: PostCollectionViewCell.reuse)
         
-        view.addSubview(exploreMBTITypes)
-        exploreMBTITypes.translatesAutoresizingMaskIntoConstraints = false
+        postCollectionView.delegate = self
+        postCollectionView.dataSource = self
+        postCollectionView.backgroundColor = UIColor.hack.white
+        postCollectionView.showsVerticalScrollIndicator = false
+        view.addSubview(postCollectionView)
+        NSLayoutConstraint.activate([
+            postCollectionView.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: 24),
+            postCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+            postCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            postCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+    }
+    
+    private func setupPostButton() {
+        postButton.setBackgroundImage(UIImage(named: "postbutton"), for: .normal)
+        postButton.layer.cornerRadius = 33
+        postButton.layer.masksToBounds = true
+        postButton.addTarget(self, action: #selector(pushPost), for: .touchUpInside)
+        
+        view.addSubview(postButton)
+        postButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            exploreMBTITypes.topAnchor.constraint(equalTo: pfp.bottomAnchor, constant: 21.95),
-            exploreMBTITypes.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            postButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -21),
+            postButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            postButton.widthAnchor.constraint(equalToConstant: 66.05),
+            postButton.heightAnchor.constraint(equalToConstant: 66.05)
         ])
     }
     
@@ -103,36 +126,28 @@ class HomeVC: UIViewController {
         mbtiStats.setTitleColor(UIColor.hack.white, for: .normal)
         mbtiStats.setBackgroundImage(UIImage(named: "tanrect"), for: .normal)
         mbtiStats.layer.cornerRadius = 16
-//        mbtiStats.addTarget(self, action: #selector(pushStats), for: .touchUpInside)
+        mbtiStats.addTarget(self, action: #selector(pushStats), for: .touchUpInside)
         
         view.addSubview(mbtiStats)
         mbtiStats.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            mbtiStats.topAnchor.constraint(equalTo: exploreMBTITypes.bottomAnchor, constant: 118),
+            mbtiStats.topAnchor.constraint(equalTo: postButton.topAnchor),
+            mbtiStats.bottomAnchor.constraint(equalTo: postButton.bottomAnchor),
             mbtiStats.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 108),
             mbtiStats.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -108),
-            mbtiStats.widthAnchor.constraint(equalToConstant: 159),
-            mbtiStats.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     
-    private func setupPostButton() {
-        postButton.setBackgroundImage(UIImage(named: "postbutton"), for: .normal)
-        postButton.layer.cornerRadius = 33.025
-        postButton.layer.masksToBounds = true
-//        postButton.addTarget(self, action: #selector(pushPost), for: .touchUpInside)
-        
-        view.addSubview(postButton)
-        postButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            postButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20.95),
-            postButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 296),
-            postButton.widthAnchor.constraint(equalToConstant: 66.05),
-            postButton.heightAnchor.constraint(equalToConstant: 66.05)
-        ])
-    }
+    @objc private func pushStats() {
+         let vc = StatsVC()
+         navigationController?.pushViewController(vc, animated: true)
+     }
+
+     @objc private func pushPost() {
+         let vc = PostVC(user: user)
+         navigationController?.pushViewController(vc, animated: true)
+     }
     
     @objc private func getPosts() {
         NetworkManager.shared.getPosts { [weak self] posts in
@@ -149,28 +164,6 @@ class HomeVC: UIViewController {
     @objc private func pushUserProfile() {
         let vc = ProfileVC(user: user)
         navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    private func setupCollectionView(){
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.scrollDirection = .vertical
-        flowLayout.minimumLineSpacing = 28
-        postCollectionView = UICollectionView(frame: .zero,
-            collectionViewLayout: flowLayout)
-        postCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        postCollectionView.register(PostCollectionViewCell.self, forCellWithReuseIdentifier: PostCollectionViewCell.reuse)
-        
-        postCollectionView.delegate = self
-        postCollectionView.dataSource = self
-        postCollectionView.backgroundColor = UIColor.hack.white
-        postCollectionView.showsVerticalScrollIndicator = false
-        view.addSubview(postCollectionView)
-        NSLayoutConstraint.activate([
-            postCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            postCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
-            postCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
-            postCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
     }
 }
     
@@ -193,8 +186,17 @@ extension HomeVC: UICollectionViewDataSource {
         }
         return UICollectionViewCell()
     }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout
 
-extension HomeVC: UICollectionViewDelegateFlowLayout { }
+extension HomeVC: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = collectionView.frame.width
+        return CGSize(width: width, height: 112)
+    }
+}

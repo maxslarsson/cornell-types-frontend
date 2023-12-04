@@ -2,14 +2,15 @@
 //  User.swift
 //  CornellTypes
 //
-//  Created by Alvaro Deras on 11/24/23.
+//  Created by Max Larsson on 12/3/23.
 //
 
 import Foundation
 
 struct User: Codable {
-    let email: String
+    let id: Int
     let username: String
-    let password: String
+    let personality: String
+    let bio: String
     let school: String
 }

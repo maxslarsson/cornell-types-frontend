@@ -20,6 +20,17 @@ class PostVC: UIViewController {
     
     private var user: User!
     
+    // MARK: - init
+    
+    init(user: User) {
+         self.user = user
+         super.init(nibName: nil, bundle: nil)
+     }
+
+     required init?(coder: NSCoder) {
+         fatalError("init(coder:) has not been implemented")
+     }
+    
     // MARK: - viewDidLoad
     
     override func viewDidLoad() {
@@ -43,7 +54,7 @@ class PostVC: UIViewController {
         newPost.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            newPost.topAnchor.constraint(equalTo: view.topAnchor, constant: 17),
+            newPost.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             newPost.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
@@ -64,17 +75,17 @@ class PostVC: UIViewController {
                 .font: UIFont(name: "Fredoka-Medium", size: 22)!
             ]
             
-        let attributedPlaceholder = NSAttributedString(string: "bio here", attributes: placeholderAttributes)
+        let attributedPlaceholder = NSAttributedString(string: "type post here", attributes: placeholderAttributes)
             
         input.attributedPlaceholder = attributedPlaceholder
         view.addSubview(input)
         input.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            input.topAnchor.constraint(equalTo: view.topAnchor, constant: 74),
+            input.topAnchor.constraint(equalTo: newPost.bottomAnchor, constant: 25),
             input.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 29),
             input.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -29),
-            input.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -342)
+            input.heightAnchor.constraint(equalToConstant: 250)
         ])
     }
     
@@ -84,15 +95,15 @@ class PostVC: UIViewController {
         postButton.setTitleColor(UIColor.hack.white, for: .normal)
         postButton.setBackgroundImage(UIImage(named: "tanrect"), for: .normal)
         postButton.layer.cornerRadius = 16
-        postButton.addTarget(self, action: #selector(pushHome), for: .touchUpInside)
+        postButton.addTarget(self, action: #selector(createPost), for: .touchUpInside)
         
         view.addSubview(postButton)
         postButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            postButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 394),
-            postButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 212),
-            postButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            postButton.topAnchor.constraint(equalTo: input.bottomAnchor, constant: 26),
+            postButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            postButton.widthAnchor.constraint(equalToConstant: 150),
             postButton.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
@@ -115,5 +126,13 @@ class PostVC: UIViewController {
     
     @objc private func popVC() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc private func createPost() {
+        guard let text = input.text else { return }
+        
+        NetworkManager.shared.createPost(user: user, text: text) {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 }

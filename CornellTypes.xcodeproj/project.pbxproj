@@ -16,7 +16,6 @@
 		4C3AA8112B197211006C8AD4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C3AA80F2B197211006C8AD4 /* LaunchScreen.storyboard */; };
 		4C3AA81A2B197352006C8AD4 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 4C3AA8192B197352006C8AD4 /* Alamofire */; };
 		4CA4B3B12B19750500584ADC /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4B3B02B19750500584ADC /* NetworkManager.swift */; };
-		4CA4B3B52B19751400584ADC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4B3B32B19751400584ADC /* User.swift */; };
 		4CA4B3B92B19751800584ADC /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4B3B82B19751800584ADC /* UIColorExtension.swift */; };
 		4CA4B3E32B19759B00584ADC /* Fredoka-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4CA4B3CA2B19759B00584ADC /* Fredoka-Medium.ttf */; };
 		4CA4B3E42B19759B00584ADC /* Fredoka-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4CA4B3CB2B19759B00584ADC /* Fredoka-Light.ttf */; };
@@ -36,7 +35,7 @@
 		63CE34A52B1AC3CA00D5DC1E /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CE34A42B1AC3CA00D5DC1E /* Post.swift */; };
 		81D65A472B1A9FD900184D9E /* VerificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D65A462B1A9FD900184D9E /* VerificationVC.swift */; };
 		81D65A4C2B1D4A8000184D9E /* UserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D65A4B2B1D4A8000184D9E /* UserProfileVC.swift */; };
-		81D65A4E2B1D4CA300184D9E /* OtherUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D65A4D2B1D4CA300184D9E /* OtherUser.swift */; };
+		81D65A4E2B1D4CA300184D9E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D65A4D2B1D4CA300184D9E /* User.swift */; };
 		81D65A502B1D4E2300184D9E /* MbtiVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D65A4F2B1D4E2300184D9E /* MbtiVC.swift */; };
 		81D65A522B1D4FCA00184D9E /* StatsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D65A512B1D4FC900184D9E /* StatsVC.swift */; };
 		81D65A542B1D54A900184D9E /* PostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D65A532B1D54A900184D9E /* PostVC.swift */; };
@@ -53,7 +52,6 @@
 		4C3AA8102B197211006C8AD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C3AA8122B197211006C8AD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CA4B3B02B19750500584ADC /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		4CA4B3B32B19751400584ADC /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4CA4B3B82B19751800584ADC /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		4CA4B3CA2B19759B00584ADC /* Fredoka-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Fredoka-Medium.ttf"; sourceTree = "<group>"; };
 		4CA4B3CB2B19759B00584ADC /* Fredoka-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Fredoka-Light.ttf"; sourceTree = "<group>"; };
@@ -73,7 +71,7 @@
 		63CE34A42B1AC3CA00D5DC1E /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		81D65A462B1A9FD900184D9E /* VerificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationVC.swift; sourceTree = "<group>"; };
 		81D65A4B2B1D4A8000184D9E /* UserProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileVC.swift; sourceTree = "<group>"; };
-		81D65A4D2B1D4CA300184D9E /* OtherUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUser.swift; sourceTree = "<group>"; };
+		81D65A4D2B1D4CA300184D9E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		81D65A4F2B1D4E2300184D9E /* MbtiVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MbtiVC.swift; sourceTree = "<group>"; };
 		81D65A512B1D4FC900184D9E /* StatsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsVC.swift; sourceTree = "<group>"; };
 		81D65A532B1D54A900184D9E /* PostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostVC.swift; sourceTree = "<group>"; };
@@ -145,9 +143,8 @@
 		4CA4B3B22B19751400584ADC /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				81D65A4D2B1D4CA300184D9E /* OtherUser.swift */,
+				81D65A4D2B1D4CA300184D9E /* User.swift */,
 				63CE34A42B1AC3CA00D5DC1E /* Post.swift */,
-				4CA4B3B32B19751400584ADC /* User.swift */,
 				4C25BD872B1A6B2400AFCCF8 /* Question.swift */,
 			);
 			path = Models;
@@ -314,14 +311,13 @@
 				4CA4B3B92B19751800584ADC /* UIColorExtension.swift in Sources */,
 				4CA4B40A2B19765D00584ADC /* LoginVC.swift in Sources */,
 				4CA4B40B2B19765D00584ADC /* SignupVC.swift in Sources */,
-				81D65A4E2B1D4CA300184D9E /* OtherUser.swift in Sources */,
+				81D65A4E2B1D4CA300184D9E /* User.swift in Sources */,
 				81D65A502B1D4E2300184D9E /* MbtiVC.swift in Sources */,
 				4C3AA8052B197210006C8AD4 /* AppDelegate.swift in Sources */,
 				4CA4B40D2B19765D00584ADC /* EnterMBTIVC.swift in Sources */,
 				4C25BD8B2B1A7C5400AFCCF8 /* OptionCollectionViewCell.swift in Sources */,
 				4CA4B40E2B19765D00584ADC /* WhatsMBTIVC.swift in Sources */,
 				4CA4B4092B19765D00584ADC /* ViewController.swift in Sources */,
-				4CA4B3B52B19751400584ADC /* User.swift in Sources */,
 				4C3AA8072B197210006C8AD4 /* SceneDelegate.swift in Sources */,
 				63CE34A52B1AC3CA00D5DC1E /* Post.swift in Sources */,
 				81D65A542B1D54A900184D9E /* PostVC.swift in Sources */,
@@ -475,13 +471,14 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.geoflect.CornellTypes;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maxslarsson.CornellTypes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -506,13 +503,14 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.geoflect.CornellTypes;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maxslarsson.CornellTypes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

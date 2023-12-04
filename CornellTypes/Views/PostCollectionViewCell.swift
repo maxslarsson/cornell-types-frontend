@@ -21,9 +21,6 @@ class PostCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = UIColor.hack.white
-        layer.cornerRadius = 16
-        
         setupUsername()
         setupMessage()
     }
@@ -47,6 +44,7 @@ class PostCollectionViewCell: UICollectionViewCell {
     /// Update UI to match the contents of the `post` property
     func updateUI() {
         username.setTitle(post.user, for: .normal)
+        username.titleLabel?.font = UIFont(name: "Fredoka-Medium", size: 22)
         message.text = post.text
     }
     
@@ -54,31 +52,34 @@ class PostCollectionViewCell: UICollectionViewCell {
     
     private func setupUsername() {
         username.translatesAutoresizingMaskIntoConstraints = false
-        username.backgroundColor = UIColor.hack.blue
-        username.layer.cornerRadius = 4
-        username.titleLabel?.font = UIFont(name: "Fredoka-Regualar", size: 24)
+        username.backgroundColor = UIColor.hack.green
+        username.layer.cornerRadius = 10
         //username.addTarget(self, action: #selector(createProfile), for: touchUpInside)
         username.setTitleColor(UIColor.hack.white, for: .normal)
         contentView.addSubview(username)
         
         NSLayoutConstraint.activate([
-            username.topAnchor.constraint(equalTo: contentView.topAnchor , constant: -50),
+            username.topAnchor.constraint(equalTo: contentView.topAnchor),
             username.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            username.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+            username.widthAnchor.constraint(equalToConstant: 108),
+            username.heightAnchor.constraint(equalToConstant: 36),
         ])
     }
     
     private func setupMessage() {
         message.translatesAutoresizingMaskIntoConstraints = false
-        message.font = UIFont(name: "Fredoka-Regular", size:22)
+        message.font = UIFont(name: "Fredoka-Medium", size: 22)
         message.textColor = UIColor.hack.white
         contentView.addSubview(message)
+        message.layer.cornerRadius = 10
+        message.layer.masksToBounds = true
+        message.backgroundColor = UIColor.hack.green
         
         NSLayoutConstraint.activate([
-            message.topAnchor.constraint(equalTo: contentView.topAnchor),
-            message.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            message.topAnchor.constraint(equalTo: username.bottomAnchor),
+            message.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             message.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            message.heightAnchor.constraint(equalToConstant: 160)
+            message.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
         
     }

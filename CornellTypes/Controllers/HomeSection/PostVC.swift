@@ -46,17 +46,11 @@ class PostVC: UIViewController {
     // MARK: - Views
     
     private func setupNewPost() {
-        newPost.text = "new post"
-        newPost.textColor = UIColor.hack.red
-        newPost.font = UIFont(name: "Fredoka-Regular", size: 28.48)
-        
-        view.addSubview(newPost)
         newPost.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            newPost.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            newPost.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        ])
+        newPost.text = "new post"
+        newPost.font = UIFont(name: "Fredoka-Regular", size: 28)
+        newPost.textColor = .hack.red
+        navigationItem.titleView = newPost
     }
     
     private func setupInput() {
@@ -82,7 +76,7 @@ class PostVC: UIViewController {
         input.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            input.topAnchor.constraint(equalTo: newPost.bottomAnchor, constant: 25),
+            input.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25),
             input.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 29),
             input.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -29),
             input.heightAnchor.constraint(equalToConstant: 250)
@@ -113,8 +107,10 @@ class PostVC: UIViewController {
         backButton.addTarget(self, action: #selector(popVC), for: .touchUpInside)
         
         backButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([backButton.widthAnchor.constraint(equalToConstant: 14),
-        backButton.heightAnchor.constraint(equalToConstant: 24)])
+        NSLayoutConstraint.activate([
+            backButton.widthAnchor.constraint(equalToConstant: 14),
+            backButton.heightAnchor.constraint(equalToConstant: 24)
+        ])
         
         let customBackButton = UIBarButtonItem(customView: backButton)
         navigationItem.leftBarButtonItem = customBackButton

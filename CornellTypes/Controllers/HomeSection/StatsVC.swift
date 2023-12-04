@@ -49,17 +49,11 @@ class StatsVC: UIViewController {
     // MARK: - Views
     
     private func setupMBTIStats() {
-        mbtiStats.text = "mbti stats"
-        mbtiStats.textColor = UIColor.hack.red
-        mbtiStats.font = UIFont(name: "Fredoka-Regular", size: 28.48)
-        
-        view.addSubview(mbtiStats)
         mbtiStats.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            mbtiStats.topAnchor.constraint(equalTo: view.topAnchor, constant: 57),
-            mbtiStats.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        ])
+        mbtiStats.text = "mbti stats"
+        mbtiStats.font = UIFont(name: "Fredoka-Regular", size: 28)
+        mbtiStats.textColor = UIColor.hack.red
+        navigationItem.titleView = mbtiStats
     }
     
     private func setupStat1() {

@@ -40,7 +40,7 @@ class HomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.hack.white
-        self.navigationItem.hidesBackButton = true
+        navigationItem.setHidesBackButton(true, animated: false)
         
         setupLogo()
         setupPFP()

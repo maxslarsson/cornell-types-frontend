@@ -178,7 +178,7 @@ class EnterMBTIVC: UIViewController {
             print("Successfully assigned \(personalityType)")
             
             DispatchQueue.main.async {
-                let vc = QuizResultVC()
+                let vc = QuizResultVC(user: self.user)
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }

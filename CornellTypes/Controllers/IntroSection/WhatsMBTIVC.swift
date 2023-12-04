@@ -18,6 +18,8 @@ class WhatsMBTIVC: UIViewController {
     
     // MARK: - Properties (data)
     
+    private var user: User!
+    
     // MARK: - viewDidLoad
     
     override func viewDidLoad() {
@@ -28,6 +30,17 @@ class WhatsMBTIVC: UIViewController {
         setupDescription()
         setupQuizButton()
         setupBackButton()
+    }
+    
+    // MARK: - init
+    
+    init(user: User) {
+        self.user = user
+        super.init(nibName: nil, bundle: nil)
+    }
+        
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     // MARK: - Set Up Views
@@ -99,7 +112,7 @@ class WhatsMBTIVC: UIViewController {
     }
     
     @objc private func pushQuiz() {
-        let vc  = QuizVC(questionId: 1)
+        let vc  = QuizVC(questionId: 1, user: user)
         navigationController?.pushViewController(vc, animated: true)
     }
 }

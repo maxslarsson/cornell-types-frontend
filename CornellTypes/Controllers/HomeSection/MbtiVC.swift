@@ -1,34 +1,31 @@
 //
-//  QuizResultVC.swift
+//  MbtiVC.swift
 //  CornellTypes
 //
-//  Created by Max Larsson on 12/1/23.
+//  Created by Alvaro Deras on 12/3/23.
 //
 
 import UIKit
 
-class QuizResultVC: UIViewController {
+class MbtiVC: UIViewController {
     
     // MARK: - Properties (view)
     
-    private let youAreAn = UILabel()
     private let type = UIImageView()
     private let tape = UIImageView()
     private let square = UIImageView()
     private let bear = UIImageView()
     private let desc = UILabel()
-    private let retakeQuizButton = UIButton()
     private let backButton = UIButton()
-    private let thisSoundsLikeMe = UIButton()
     
     // MARK: - Properties (data)
     
-    private var user: User!
+    private var user: OtherUser!
     private var personality: String!
     
     // MARK: - init
     
-    init(user: User) {
+    init(user: OtherUser) {
         self.user = user
         super.init(nibName: nil, bundle: nil)
     }
@@ -43,31 +40,15 @@ class QuizResultVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.hack.white
         
-        setupMyProfile()
         setupType()
         setupSquare()
         setupBear()
         setupTape()
         setupDesc()
-        setupQuizButton()
-        setupThisSoundsLikeMe()
+        setupBackButton()
     }
     
     // MARK: - Views
-    
-    private func setupMyProfile() {
-        youAreAn.text = "you are an..."
-        youAreAn.textColor = UIColor.hack.red
-        youAreAn.font = UIFont(name: "Fredoka-Regular", size: 28.48)
-        
-        view.addSubview(youAreAn)
-        youAreAn.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            youAreAn.topAnchor.constraint(equalTo: view.topAnchor, constant: 28),
-            youAreAn.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        ])
-    }
     
     private func setupType() {
         type.image = UIImage(named: personality.lowercased())
@@ -179,62 +160,22 @@ class QuizResultVC: UIViewController {
         ])
     }
     
-    private func setupQuizButton() {
-        retakeQuizButton.setTitle("retake quiz", for: .normal)
-        retakeQuizButton.titleLabel!.font = UIFont(name: "Fredoka-Medium", size: 22)
-        retakeQuizButton.setTitleColor(UIColor.hack.white, for: .normal)
-        retakeQuizButton.setBackgroundImage(UIImage(named: "purplerect"), for: .normal)
-        retakeQuizButton.layer.cornerRadius = 16
-        retakeQuizButton.addTarget(self, action: #selector(pushQuiz), for: .touchUpInside)
+    private func setupBackButton() {
+        backButton.setImage(UIImage(named: "back"), for: .normal)
+        backButton.addTarget(self, action: #selector(popVC), for: .touchUpInside)
         
-        view.addSubview(retakeQuizButton)
-        retakeQuizButton.translatesAutoresizingMaskIntoConstraints = false
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([backButton.widthAnchor.constraint(equalToConstant: 14),
+        backButton.heightAnchor.constraint(equalToConstant: 24)])
         
-        NSLayoutConstraint.activate([
-            retakeQuizButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 651),
-            retakeQuizButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            retakeQuizButton.widthAnchor.constraint(equalToConstant: 243),
-            retakeQuizButton.heightAnchor.constraint(equalToConstant: 50)
-        ])
+        let customBackButton = UIBarButtonItem(customView: backButton)
+        navigationItem.leftBarButtonItem = customBackButton
     }
     
-    private func setupThisSoundsLikeMe() {
-        thisSoundsLikeMe.setTitle("this sounds like me!", for: .normal)
-        thisSoundsLikeMe.titleLabel!.font = UIFont(name: "Fredoka-Medium", size: 22)
-        thisSoundsLikeMe.setTitleColor(UIColor.hack.white, for: .normal)
-        thisSoundsLikeMe.setBackgroundImage(UIImage(named: "purplerect"), for: .normal)
-        thisSoundsLikeMe.layer.cornerRadius = 16
-        thisSoundsLikeMe.addTarget(self, action: #selector(pushHome), for: .touchUpInside)
-        
-        view.addSubview(thisSoundsLikeMe)
-        thisSoundsLikeMe.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            thisSoundsLikeMe.topAnchor.constraint(equalTo: view.topAnchor, constant: 728),
-            thisSoundsLikeMe.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            thisSoundsLikeMe.widthAnchor.constraint(equalToConstant: 243),
-            thisSoundsLikeMe.heightAnchor.constraint(equalToConstant: 50)
-        ])
-    }
     
-    @objc private func pushQuiz() {
-        let vc  = QuizVC(questionId: 1, user: user)
-        navigationController?.pushViewController(vc, animated: true)
-    }
     
-    @objc private func pushHome() {
-
-        NetworkManager.shared.loginUser(user: user) { [weak self] loggedInUser in
-            guard let self = self else { return }
-            print("User logged in successfully: \(loggedInUser)")
-
-            DispatchQueue.main.async {
-                let newUser = User(email: loggedInUser.email, username: loggedInUser.username, password: loggedInUser.password, school: loggedInUser.school)
-                let vc = HomeVC(user: loggedInUser)
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
-
-        }
+    @objc private func popVC() {
+        navigationController?.popViewController(animated: true)
     }
 }
 

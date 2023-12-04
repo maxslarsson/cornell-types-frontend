@@ -1,25 +1,24 @@
 //
-//  ProfileVC.swift
+//  UserProfileVC.swift
 //  CornellTypes
 //
-//  Created by Alvaro Deras on 11/24/23.
+//  Created by Alvaro Deras on 12/3/23.
 //
 
 import UIKit
 
-class ProfileVC: UIViewController {
+class UserProfileVC: UIViewController {
     
     // MARK: - Properties (view)
 
-    private let myProfile = UILabel()
+    private let otherProfile = UILabel()
     private let tape = UIImageView()
     private let square = UIImageView()
     private let bear = UIImageView()
     private let type = UIButton()
     private let school = UIButton()
-    private let name = UITextField()
-    private let bio = UITextField()
-    private let logOut = UIButton()
+    private let bioLabel = UILabel()
+    private let bio = UILabel()
     private let backButton = UIButton()
     
     // MARK: - Properties (data)
@@ -33,14 +32,14 @@ class ProfileVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.hack.white
         
-        setupMyProfile()
+        setupOtherProfile()
         setupSquare()
         setupBear()
         setupTape()
         setupType()
         setupSchool()
-        setupLogOut()
-        setupBackButton()
+        setupBioLabel()
+        setupBio()
     }
     
     // MARK: - init
@@ -56,17 +55,17 @@ class ProfileVC: UIViewController {
     
     // MARK: - Views
     
-    private func setupMyProfile() {
-        myProfile.text = "my profile"
-        myProfile.textColor = UIColor.hack.red
-        myProfile.font = UIFont(name: "Fredoka-Regular", size: 28.48)
+    private func setupOtherProfile() {
+        otherProfile.text = "\(user.username)'s profile"
+        otherProfile.textColor = UIColor.hack.red
+        otherProfile.font = UIFont(name: "Fredoka-Regular", size: 28.48)
         
-        view.addSubview(myProfile)
-        myProfile.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(otherProfile)
+        otherProfile.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            myProfile.topAnchor.constraint(equalTo: view.topAnchor, constant: 16),
-            myProfile.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            otherProfile.topAnchor.constraint(equalTo: view.topAnchor, constant: 17),
+            otherProfile.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
     
@@ -111,27 +110,6 @@ class ProfileVC: UIViewController {
             bear.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 73),
             bear.widthAnchor.constraint(equalToConstant: 208.87),
             bear.heightAnchor.constraint(equalToConstant: 223)
-        ])
-    }
-
-    
-    private func setupLogOut() {
-        logOut.setTitle("log out", for: .normal)
-        logOut.titleLabel!.font = UIFont(name: "Fredoka-Medium", size: 22)
-        logOut.setTitleColor(UIColor.hack.white, for: .normal)
-        logOut.setBackgroundImage(UIImage(named: "redrect"), for: .normal)
-        logOut.layer.cornerRadius = 16
-        logOut.addTarget(self, action: #selector(pushVC), for: .touchUpInside)
-        
-        view.addSubview(logOut)
-        logOut.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            logOut.topAnchor.constraint(equalTo: view.topAnchor, constant: 745),
-            logOut.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 66),
-            logOut.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -66),
-            logOut.heightAnchor.constraint(equalToConstant: 50)
-        
         ])
     }
     
@@ -205,63 +183,34 @@ class ProfileVC: UIViewController {
         ])
     }
     
-    private func setupName() {
-        name.layer.borderColor = UIColor.hack.red.cgColor
-        name.layer.borderWidth = 2
-        name.layer.cornerRadius = 11
-        name.autocapitalizationType = .none
+    private func setupBioLabel() {
+        bioLabel.text = "Bio:"
+        bioLabel.textColor = UIColor.hack.red
+        bioLabel.font = UIFont(name: "Fredoka-Medium", size: 22)
+        bioLabel.numberOfLines = 0
         
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: name.frame.height))
-        
-        name.leftView = paddingView
-        name.leftViewMode = .always
-        
-        let placeholderAttributes: [NSAttributedString.Key: Any] = [
-                .foregroundColor: UIColor.hack.darkpink,
-                .font: UIFont(name: "Fredoka-Medium", size: 22)!
-            ]
-            
-        let attributedPlaceholder = NSAttributedString(string: "name here", attributes: placeholderAttributes)
-            
-        name.attributedPlaceholder = attributedPlaceholder
-        view.addSubview(name)
-        name.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bioLabel)
+        bioLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            name.topAnchor.constraint(equalTo: view.topAnchor, constant: 513),
-            name.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 68),
-            name.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -74),
-            name.heightAnchor.constraint(equalToConstant: 50)
+            bioLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 536),
+            bioLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 72)
         ])
     }
     
     private func setupBio() {
-        bio.layer.borderColor = UIColor.hack.red.cgColor
-        bio.layer.borderWidth = 2
-        bio.layer.cornerRadius = 11
-        bio.autocapitalizationType = .none
+        //bio.text = user.bio
+        bio.textColor = UIColor.hack.red
+        bio.font = UIFont(name: "Fredoka-Medium", size: 22)
+        bio.numberOfLines = 0
         
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 16, height: bio.frame.height))
-        
-        bio.leftView = paddingView
-        bio.leftViewMode = .always
-        
-        let placeholderAttributes: [NSAttributedString.Key: Any] = [
-                .foregroundColor: UIColor.hack.darkpink,
-                .font: UIFont(name: "Fredoka-Medium", size: 22)!
-            ]
-            
-        let attributedPlaceholder = NSAttributedString(string: "bio here", attributes: placeholderAttributes)
-            
-        bio.attributedPlaceholder = attributedPlaceholder
         view.addSubview(bio)
         bio.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            bio.topAnchor.constraint(equalTo: view.topAnchor, constant: 581),
+            bio.topAnchor.constraint(equalTo: view.topAnchor, constant: 618),
             bio.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 61),
-            bio.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -71),
-            bio.heightAnchor.constraint(equalToConstant: 123)
+            bio.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -71)
         ])
     }
     
@@ -275,18 +224,6 @@ class ProfileVC: UIViewController {
         
         let customBackButton = UIBarButtonItem(customView: backButton)
         navigationItem.leftBarButtonItem = customBackButton
-    }
-
-    @objc private func pushVC() {
-        NetworkManager.shared.logoutUser(user: user) { [weak self] loggedOutUser in
-            guard let self = self else { return }
-            print("Successfully logged out \(loggedOutUser.username)")
-            
-            DispatchQueue.main.async {
-                let vc = ViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
-        }
     }
     
     @objc private func pushQuizResult() {

@@ -17,6 +17,7 @@ class QuizVC: UIViewController {
     private var optionsCollectionView: UICollectionView!
     
     // MARK: - Properties (data)
+    
     private var question: Question?
     private static let buttonColors = [
         UIColor.hack.purple,
@@ -29,10 +30,11 @@ class QuizVC: UIViewController {
         UIImage(named: "beartwo"),
         UIImage(named: "bearsneaky"),
     ]
+    private var user: User!
     
     // MARK: init
     
-    init(questionId: Int) {
+    init(questionId: Int, user: User) {
         super.init(nibName: nil, bundle: nil)
         
         NetworkManager.shared.getQuestion(questionId: questionId) { [weak self] question in
@@ -132,7 +134,7 @@ extension QuizVC: UICollectionViewDelegate {
         // Safe because a cell is only rendered of options exists (see numberOfItemsInSection below)
         let nextQuestionId = question!.id + 1
         
-        let vc = nextQuestionId == 37 ? QuizResultVC() : QuizVC(questionId: nextQuestionId)
+        let vc = nextQuestionId == 37 ? QuizResultVC(user: user) : QuizVC(questionId: nextQuestionId, user: user)
         navigationController?.pushViewController(vc, animated: true)
     }
 }

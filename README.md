@@ -4,7 +4,7 @@ An app to share and discuss MBTI Personality Types for the fellow Cornell commun
 
 ## Screenshots
 
-<img src="imgs/homeScreen.png" alt="home screen" width="200"/> <img src="imgs/quiz.png" alt="quiz" width="200"/> <img src="imgs/quizResults.png" alt="quiz results" width="200"/> <img src="imgs/feed.png" alt="feed" width="200"/> <img src="imgs/newPost.png" alt="new post" width="200"/> <img src="imgs/stats.png" alt="stats" width="200"/>
+<img src="imgs/homeScreen.png" alt="home screen" width="250"/> <img src="imgs/quiz.png" alt="quiz" width="250"/> <img src="imgs/quizResults.png" alt="quiz results" width="250"/> <img src="imgs/feed.png" alt="feed" width="250"/> <img src="imgs/newPost.png" alt="new post" width="250"/> <img src="imgs/stats.png" alt="stats" width="250"/>
 
 ## Backend
 

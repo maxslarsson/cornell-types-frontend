@@ -4,9 +4,9 @@ FA23 Hack Challenge for Cornell AppDev
 
 ## Screenshots
 
-![home screen](imgs/homeScreen.png | width=100)
-![quiz](imgs/quiz.png | width=100)
-![quizResults](imgs/quizResults.png | width=100)
+<img src="imgs/homeScreen.png" alt="home screen" width="200"/>
+<img src="imgs/quiz.png" alt="quiz" width="200"/>
+<img src="imgs/quizResults.png" alt="quiz results" width="200"/>
 
 ## Backend
 

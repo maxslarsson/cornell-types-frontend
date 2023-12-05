@@ -1,6 +1,6 @@
 # Cornell Types Frontend
 
-FA23 Hack Challenge for Cornell AppDev
+An app to share and discuss MBTI Personality Types for the fellow Cornell community.
 
 ## Screenshots
 

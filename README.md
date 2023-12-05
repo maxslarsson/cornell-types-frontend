@@ -2,6 +2,12 @@
 
 FA23 Hack Challenge for Cornell AppDev
 
+## Backend
+
+[https://github.com/tg329/cornell-types/tree/backend](https://github.com/tg329/cornell-types/tree/backend)
+
+## Members
+
 Frontend:
 - Alvaro Deras (ad2226)
 - Max Larsson (ml2735)

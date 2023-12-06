@@ -141,7 +141,7 @@ extension QuizVC: UICollectionViewDelegate {
             if nextQuestionId == 37 {
                 NetworkManager.shared.getResults(user: self.user) { [weak self] user in
                     guard let self = self else { return }
-                    let vc = QuizResultVC(user: self.user)
+                    let vc = QuizResultVC(user: user)
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             } else {
